@@ -10,9 +10,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ProductDto {
-    private int product_no;
+    private String productCode;
 
-    private String product_name;
+    private String productName;
 
-    private int product_price;
+    private Long productPrice;
+
+    private String pbProduct;
 }

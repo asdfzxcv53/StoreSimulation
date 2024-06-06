@@ -10,4 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeController {
 
     EmployeeService employeeService;
+
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+
 }

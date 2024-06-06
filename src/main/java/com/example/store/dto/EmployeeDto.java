@@ -8,6 +8,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class EmployeeDto {
-    private Long id;
-    private String name;
+    private String empCode;
+    private String empName;
+    private Long empAge;
+    private String empGender;
+    private String empPhoneNo;
+    private String empMailNo;
+    private String empAccountNo;
+    private String part;
+    private Long salary;
 }

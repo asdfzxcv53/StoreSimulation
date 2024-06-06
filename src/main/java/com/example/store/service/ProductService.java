@@ -17,7 +17,27 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductDto> getAllProducts() {
-        return productRepository.SelectProduct();
+    public List<ProductDto> SelectAllProducts() {
+        return productRepository.SelectAllProduct();
+    }
+
+    public ProductDto SelectProductByCode(String productCode) {
+        return productRepository.SelectProductByCode(productCode);
+    }
+
+    public ProductDto SelectProductByName(String productName) {
+        return productRepository.SelectProductByName(productName);
+    }
+
+    public void InsertProduct(ProductDto productDto) {
+        productRepository.InsertProduct(productDto);
+    }
+
+    public void UpdateProduct(ProductDto productDto) {
+        productRepository.UpdateProduct(productDto);
+    }
+
+    public void DeleteProductByCode(String productCode) {
+        productRepository.DeleteProduct(productCode);
     }
 }

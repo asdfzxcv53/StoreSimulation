@@ -19,22 +19,32 @@ public class ProductRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<ProductDto> SelectProduct(){
+    public List<ProductDto> SelectAllProduct(){
         return jdbcTemplate.query("select * from product", new BeanPropertyRowMapper<>(ProductDto.class));
     }
 
-    public List<ProductDto> SelectProductByName(String name){
+    public ProductDto SelectProductByCode(String productCode){
+        String sql = "select * from product where PRODUCT_CODE = ?";
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ProductDto.class), productCode);
+    }
+
+    public ProductDto SelectProductByName(String productName){
         String sql = "select * from product where PRODUCT_NAME = ?";
-        return jdbcTemplate.query(sql, new Object[]{name}, new BeanPropertyRowMapper<>(ProductDto.class));
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ProductDto.class), productName);
     }
 
-    public void InsertProduct(ProductDto product){
-        String sql = "insert into product values (?, ?, ?)";
-        jdbcTemplate.update(sql, product.getProduct_no(), product.getProduct_name(), product.getProduct_price());
+    public void InsertProduct(ProductDto productDto){
+        String sql = "insert into product values (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, productDto.getProductCode(), productDto.getProductName(), productDto.getProductPrice(), productDto.getPbProduct());
     }
 
-    public void DeleteProduct(int id){
-        String sql = "delete from product where PRODUCT_NO = ?";
-        jdbcTemplate.update(sql, id);
+    public void UpdateProduct(ProductDto productDto){
+        String sql = "update product set product_name = ?,product_price = ?,pb_product = ? where PRODUCT_CODE = ?";
+        jdbcTemplate.update(sql, productDto.getProductName(), productDto.getProductPrice(), productDto.getPbProduct(), productDto.getProductCode());
+    }
+
+    public void DeleteProduct(String productCode){
+        String sql = "delete from product where PRODUCT_CODE = ?";
+        jdbcTemplate.update(sql, productCode);
     }
 }
