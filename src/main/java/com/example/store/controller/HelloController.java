@@ -1,19 +1,14 @@
 package com.example.store.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
 
-    @GetMapping("/")
-    public String hello() {
-        return "Hello World";
-    }
-    @GetMapping("/hello")
-    public String hello2() {
-        return "Hello World!!!!!";
+    @RequestMapping(value = "/test/hello")
+    @ResponseBody
+    public String hello(Model model) {
+        return "Hello World!";
     }
 }
