@@ -15,6 +15,7 @@ public class ProductController {
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
+
         this.productService = productService;
     }
 
@@ -27,7 +28,7 @@ public class ProductController {
 
     //@PostMapping("")
 
-    @PostMapping("/save")
+    @PostMapping("/reigst")
     public void InsertProduct(@RequestBody ProductDto productDto){
         productService.InsertProduct(productDto);
     }
