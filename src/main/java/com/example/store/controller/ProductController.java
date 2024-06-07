@@ -3,14 +3,14 @@ package com.example.store.controller;
 import com.example.store.dto.ProductDto;
 import com.example.store.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/product")
-@Controller
+@RestController
 public class ProductController {
     private final ProductService productService;
 
@@ -19,8 +19,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("")
-    @ResponseBody
+    @GetMapping("/api/product")
     public List<ProductDto> SelectAllProducts() {
 
         return productService.SelectAllProducts();
@@ -28,14 +27,14 @@ public class ProductController {
 
     //@PostMapping("")
 
-    @PostMapping("/reigst")
-    public void InsertProduct(@RequestBody ProductDto productDto){
+    @PostMapping("/product/regist")
+    public ResponseEntity<?> InsertProduct(@RequestBody ProductDto productDto){
         productService.InsertProduct(productDto);
+        return ResponseEntity.ok("Product added successfully");
     }
 
     //@PostMapping()
     @GetMapping("/count")
-    @ResponseBody
     public int CountProduct(){
         return productService.CountProduct();
     }

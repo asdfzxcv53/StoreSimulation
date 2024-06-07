@@ -12,13 +12,11 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
     @Autowired
     public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
         this.productMapper = productMapper;
-        this.productRepository = productRepository;
     }
 
     @Transactional
@@ -28,27 +26,27 @@ public class ProductService {
 
     @Transactional
     public ProductDto SelectProductByCode(String productCode) {
-        return productRepository.SelectProductByCode(productCode);
+        return productMapper.SelectProductByCode(productCode);
     }
 
     @Transactional
     public ProductDto SelectProductByName(String productName) {
-        return productRepository.SelectProductByName(productName);
+        return productMapper.SelectProductByName(productName);
     }
 
     @Transactional
     public void InsertProduct(ProductDto productDto) {
-        productRepository.InsertProduct(productDto);
+        productMapper.InsertProduct(productDto);
     }
 
     @Transactional
     public void UpdateProduct(ProductDto productDto) {
-        productRepository.UpdateProduct(productDto);
+        productMapper.UpdateProduct(productDto);
     }
 
     @Transactional
     public void DeleteProductByCode(String productCode) {
-        productRepository.DeleteProduct(productCode);
+        productMapper.DeleteProduct(productCode);
     }
 
     @Transactional

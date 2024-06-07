@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AtmDto {
+public class ATMDto {
 
     private String atmUseDate;
     private String atmCode;
