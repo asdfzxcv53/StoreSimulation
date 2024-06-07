@@ -7,4 +7,26 @@
     <select id="CountProduct" resultType="Integer">
         select count(*) from product
     </select>
+    <select id="SelectAllProduct" resultType="com.example.store.dto.ProductDto">
+        select * from product
+    </select>
+    <select id="SelectProductByCode" parameterType="String" resultType="com.example.store.dto.ProductDto">
+        select * from product where product_code = #{productCode}
+    </select>
+    <select id="SelectProductByName" parameterType="String" resultType="com.example.store.dto.ProductDto">
+        select * from product where product_name = #{productName}
+    </select>
+    <insert id="InsertProduct" parameterType="com.example.store.dto.ProductDto">
+        insert into product values (#{productCode}, #{productName}, #{productPrice}, #{pbProduct})
+    </insert>
+    <update id="UpdateProduct" parameterType="com.example.store.dto.ProductDto">
+        update product
+        set PRODUCT_NAME = #{productName},
+            PRODUCT_PRICE = #{productPrice},
+            PB_PRODUCT = #{pbProduct}
+        where PRODUCT_CODE = #{productCode}
+    </update>
+    <delete id="DeleteProduct" parameterType="String">
+        delete from product where PRODUCT_CODE = #{productCode}
+    </delete>
 </mapper>

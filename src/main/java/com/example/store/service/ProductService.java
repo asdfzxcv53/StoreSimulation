@@ -21,7 +21,7 @@ public class ProductService {
     }
 
     public List<ProductDto> SelectAllProducts() {
-        return productRepository.SelectAllProduct();
+        return productMapper.SelectAllProduct();
     }
 
     public ProductDto SelectProductByCode(String productCode) {
