@@ -21,6 +21,7 @@ public class ProductController {
     @GetMapping("")
     @ResponseBody
     public List<ProductDto> SelectAllProducts() {
+
         return productService.SelectAllProducts();
     }
 
@@ -32,4 +33,9 @@ public class ProductController {
     }
 
     //@PostMapping()
+    @GetMapping("/count")
+    @ResponseBody
+    public int CountProduct(){
+        return productService.CountProduct();
+    }
 }
