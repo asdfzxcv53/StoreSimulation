@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProdManage {
+public class ProdManageDto {
     private String manageDate;
     private String manageTypeCode;
     private String productCode;

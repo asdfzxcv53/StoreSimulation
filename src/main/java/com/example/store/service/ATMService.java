@@ -5,6 +5,8 @@ import com.example.store.mapper.ATMMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ATMService {
 
@@ -13,6 +15,10 @@ public class ATMService {
     @Autowired
     public ATMService(ATMMapper atmMapper){
         this.atmMapper = atmMapper;
+    }
+
+    public List<ATMDto> SelectAllATM(){
+        return atmMapper.SelectAllATM();
     }
 
     public void InsertATM(ATMDto atmDto){

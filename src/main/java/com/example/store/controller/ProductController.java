@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/product")
 public class ProductController {
     private final ProductService productService;
 
@@ -19,7 +20,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/api/product")
+    @GetMapping
     public List<ProductDto> SelectAllProducts() {
 
         return productService.SelectAllProducts();
@@ -27,15 +28,9 @@ public class ProductController {
 
     //@PostMapping("")
 
-    @PostMapping("/product/regist")
+    @PostMapping("/regist")
     public ResponseEntity<?> InsertProduct(@RequestBody ProductDto productDto){
         productService.InsertProduct(productDto);
         return ResponseEntity.ok("Product added successfully");
-    }
-
-    //@PostMapping()
-    @GetMapping("/count")
-    public int CountProduct(){
-        return productService.CountProduct();
     }
 }

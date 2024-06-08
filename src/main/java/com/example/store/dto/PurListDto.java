@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PurList {
+public class PurListDto {
     private String purchaseDate;
     private String purchaseCode;
     private String productCode;
