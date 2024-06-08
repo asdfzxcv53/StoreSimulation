@@ -26,8 +26,6 @@ public class ProductController {
         return productService.SelectAllProducts();
     }
 
-    //@PostMapping("")
-
     @PostMapping("/regist")
     public ResponseEntity<?> InsertProduct(@RequestBody ProductDto productDto){
         productService.InsertProduct(productDto);
