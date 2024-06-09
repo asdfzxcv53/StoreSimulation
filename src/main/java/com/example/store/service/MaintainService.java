@@ -1,6 +1,7 @@
 package com.example.store.service;
 
 import com.example.store.dto.IncomeDto;
+import com.example.store.dto.MaintainData;
 import com.example.store.dto.MaintainDto;
 import com.example.store.dto.OutcomeDto;
 import com.example.store.mapper.MaintainMapper;
@@ -31,7 +32,9 @@ public class MaintainService {
     }
 
     @Transactional
-    public void InsertMaintain(MaintainDto maintainDto) {
+    public void InsertMaintain(MaintainData maintainData) {
+        String typeCode = maintainData.getTypeCode();
+        Long amount = maintainData.getAmount();
         LocalDate currentDate = LocalDate.now();
 
         // 날짜 포맷 지정
@@ -40,18 +43,24 @@ public class MaintainService {
         // 현재 날짜를 지정한 포맷으로 변환하여 문자열로 저장
         String formattedDate = currentDate.format(formatter);
 
-        String maintainCode = codeSequence.generateMaintainCode();
+        String maintainCode = codeSequence.generateMaintainCode(typeCode);
+
 
         // 지출먼저 넣어주고
         OutcomeDto outcomeDto = new OutcomeDto();
         outcomeDto.setOutcomeCode(maintainCode);
         outcomeDto.setOutcomeDate(formattedDate);
-        outcomeDto.setOutcomeAmount(maintainDto.getMaintainAmount());
+        outcomeDto.setOutcomeAmount(amount);
         outcomeService.InsertOutcome(outcomeDto);
+        System.out.println(outcomeDto);
 
         // 유지비 나중에 넣어주고
+        MaintainDto maintainDto = new MaintainDto();
         maintainDto.setMaintainCode(maintainCode);
         maintainDto.setMaintainDate(formattedDate);
+        maintainDto.setMaintainAmount(amount);
+        maintainDto.setEmpCode("000003");
+        System.out.println(maintainDto);
         maintainMapper.InsertMaintain(maintainDto);
     }
 }

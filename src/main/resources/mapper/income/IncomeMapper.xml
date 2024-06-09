@@ -11,11 +11,15 @@
 
     <insert id="InsertIncome" parameterType="com.example.store.dto.IncomeDto">
         BEGIN
-            insert into income(income_date, income_code, income_amount) values (#{INCOME_DATE}, #{INCOME_CODE}, #{INCOME_AMOUNT});
+            insert into income(income_date, income_code, income_amount) values (#{incomeDate}, #{incomeCode}, #{incomeAmount});
         END;
     </insert>
 
     <select id="SelectAllIncome" resultMap="IncomeDto">
         select * from income
+    </select>
+
+    <select id="SelectIncomeByDateCode" parameterType="com.example.store.dto.IncomeDto" resultMap="IncomeDto">
+        select * from income where INCOME_DATE = #{incomeDate} and INCOME_CODE = #{incomeCode}
     </select>
 </mapper>

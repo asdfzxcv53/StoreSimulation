@@ -3,6 +3,7 @@ package com.example.store.service;
 import com.example.store.dto.ProductDto;
 import com.example.store.mapper.ProductMapper;
 import com.example.store.repository.ProductRepository;
+import com.example.store.sequence.CodeSequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +14,12 @@ import java.util.List;
 public class ProductService {
 
     private final ProductMapper productMapper;
+    private final CodeSequence codeSequence;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductService(ProductMapper productMapper, CodeSequence codeSequence) {
         this.productMapper = productMapper;
+        this.codeSequence = new CodeSequence();
     }
 
     @Transactional
@@ -36,6 +39,7 @@ public class ProductService {
 
     @Transactional
     public void InsertProduct(ProductDto productDto) {
+        productDto.setProductCode(codeSequence.generateProductCode());
         productMapper.InsertProduct(productDto);
     }
 

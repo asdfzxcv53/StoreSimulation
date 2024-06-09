@@ -12,7 +12,7 @@
 
     <insert id="InsertMaintain" parameterType="com.example.store.dto.MaintainDto">
         BEGIN
-           insert into maintain(MAINTAIN_AMOUNT, EMP_CODE, MAINTAIN_CODE, MAINTAIN_DATE) values (#{MAINTAIN_AMOUNT}, #{EMP_CODE}, #{MAINTAIN_CODE}, #{MAINTAIN_DATE});
+           insert into maintain(MAINTAIN_AMOUNT, EMP_CODE, MAINTAIN_CODE, MAINTAIN_DATE) values (#{maintainAmount}, #{empCode}, #{maintainCode}, #{maintainDate});
         END;
     </insert>
 

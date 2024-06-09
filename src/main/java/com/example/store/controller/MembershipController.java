@@ -24,6 +24,7 @@ public class MembershipController {
 
     @PostMapping("/regist")
     public ResponseEntity<?> InsertMembership(@RequestBody MembershipDto membershipDto) {
+        System.out.println(membershipDto);
         membershipService.InsertMembership(membershipDto);
         return ResponseEntity.ok().build();
     }

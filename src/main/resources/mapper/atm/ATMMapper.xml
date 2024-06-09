@@ -14,7 +14,7 @@
 
     <insert id="InsertATM" parameterType="com.example.store.dto.ATMDto">
         BEGIN
-            insert into ATM(ATM_USE_DATE, ATM_CODE, DNW_TYPE_CODE, ATM_ACCOUNT_NO, DNW_AMOUNT, EMP_CODE) values (#{ATM_USE_DATE}, #{ATM_CODE}, #{DNW_TYPE_CODE}, #{ATM_ACCOUNT_NO}, #{DNW_AMOUNT}, #{EMP_CODE});
+            insert into ATM(ATM_USE_DATE, ATM_CODE, DNW_TYPE_CODE, ATM_BANK_NAME, ATM_ACCOUNT_NO, DNW_AMOUNT, EMP_CODE) values (#{atmUseDate}, #{atmCode}, #{dnwTypeCode}, #{atmBankName}, #{atmAccountNo}, #{dnwAmount}, #{empCode});
         END;
     </insert>
 

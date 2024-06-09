@@ -4,17 +4,17 @@
 
 <mapper namespace="com.example.store.mapper.ReturnListMapper">
     <resultMap id="ReturnListDto" type="com.example.store.dto.ReturnListDto">
-        <result property="RETURN_QUANTITY" column="RETURN_QUANTITY"/>
-        <result property="RETURN_PRICE" column="RETURN_PRICE"/>
-        <result property="RETURN_DATE" column="RETURN_DATE"/>
-        <result property="PRODUCT_CODE" column="PRODUCT_CODE"/>
-        <result property="PURCHASE_DATE" column="PURCHASE_DATE"/>
-        <result property="PURCHASE_CODE" column="PURCHASE_CODE"/>
+        <result property="returnQuantity" column="RETURN_QUANTITY"/>
+        <result property="returnPrice" column="RETURN_PRICE"/>
+        <result property="returnDate" column="RETURN_DATE"/>
+        <result property="productCode" column="PRODUCT_CODE"/>
+        <result property="purchaseDate" column="PURCHASE_DATE"/>
+        <result property="purchaseCode" column="PURCHASE_CODE"/>
     </resultMap>
 
     <insert id="InsertReturnList" parameterType="com.example.store.dto.ReturnListDto">
         BEGIN
-            insert into RETURN_LIST(RETURN_QUANTITY, RETURN_PRICE, RETURN_DATE, PRODUCT_CODE, PURCHASE_DATE, PURCHASE_CODE) values (#{RETURN_QUANTITY}, #{RETURN_PRICE}, #{RETURN_DATE}, #{PRODUCT_CODE}, #{PURCHASE_DATE}, #{PURCHASE_CODE});
+            insert into RETURN_LIST(RETURN_QUANTITY, RETURN_PRICE, RETURN_DATE, PRODUCT_CODE, PURCHASE_DATE, PURCHASE_CODE) values (#{returnQuantity}, #{returnPrice}, #{returnDate}, #{productCode}, #{purchaseDate}, #{purchaseCode});
         END;
     </insert>
 

@@ -1,6 +1,8 @@
 package com.example.store.controller;
 
 import com.example.store.dto.DiscardListDto;
+import com.example.store.dto.NewDiscardDto;
+import com.example.store.dto.NewDiscardProductDto;
 import com.example.store.service.DiscardListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,13 @@ public class DiscardListController {
     }
 
     @PostMapping("/regist")
-    public ResponseEntity<?> InsertDiscardList(@RequestBody DiscardListDto discardListDto) {
+    public ResponseEntity<?> InsertDiscardList(@RequestBody List<DiscardListDto> discardListDto) {
+        System.out.println(discardListDto);
         discardListService.InsertDiscardList(discardListDto);
+
+
         return ResponseEntity.ok().build();
+
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.store.controller;
 
+import com.example.store.dto.MaintainData;
 import com.example.store.dto.MaintainDto;
 import com.example.store.service.MaintainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class MaintainController {
     }
 
     @PostMapping("/regist")
-    public ResponseEntity<?> InsertMaintain(@RequestBody MaintainDto maintainDto) {
-        maintainService.InsertMaintain(maintainDto);
+    public ResponseEntity<?> InsertMaintain(@RequestBody MaintainData maintainData) {
+        maintainService.InsertMaintain(maintainData);
         return ResponseEntity.ok().build();
     }
 }

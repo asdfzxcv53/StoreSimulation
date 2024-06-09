@@ -12,14 +12,18 @@
         <result property="empAccountNo" column="EMP_ACCOUNT_NO"/>
         <result property="part" column="PART"/>
         <result property="salary" column="SALARY"/>
+        <result property="empBankName" column="EMP_BANK_NAME"/>
     </resultMap>
 
     <insert id="InsertEmployee" parameterType="com.example.store.dto.EmployeeDto">
         BEGIN
-            insert into employee(EMP_CODE, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE_NO, EMP_MAIL_NO, EMP_ACCOUNT_NO, PART, SALARY) values (#{EMP_CODE}, #{EMP_NAME}, #{EMP_AGE}, #{EMP_GENDER}, #{EMP_PHONE_NO}, #{EMP_MAIL_NO}, #{EMP_ACCOUNT_NO}, #{PART}, #{SALARY});
+            insert into employee(EMP_CODE, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE_NO, EMP_MAIL_NO, EMP_ACCOUNT_NO, PART, SALARY, EMP_BANK_NAME) values (#{empCode}, #{empName}, #{empAge}, #{empGender}, #{empPhoneNo}, #{empMailNo}, #{empAccountNo}, #{part}, #{salary}, #{empBankName});
         END;
     </insert>
     <select id="SelectAllEmployee" resultMap="EmployeeDto">
         select * from EMPLOYEE
     </select>
+    <delete id="DeleteEmployeeByCode" parameterType="String">
+        delete from EMPLOYEE where EMP_CODE = #{empCode}
+    </delete>
 </mapper>

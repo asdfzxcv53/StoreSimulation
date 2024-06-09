@@ -18,7 +18,7 @@
 
     <insert id="InsertDelivery" parameterType="com.example.store.dto.DeliveryDto">
         BEGIN
-            insert into delivery(RECEIVER, SENDER, SOURCE, DEST, DELIVERY_CONTENT, DELIVERY_AMOUNT, CURRENT_STATUS, EMP_CODE, DELIVERY_DATE, DELIVERY_CODE) values (#{RECEIVER}, #{SENDER}, #{SOURCE}, #{DEST}, #{DELIVERY_CONTENT}, #{DELIVERY_AMOUNT}, #{CURRENT_STATUS}, #{EMP_CODE}, #{DELIVERY_DATE}, #{DELIVERY_CODE});
+            insert into delivery(RECEIVER, SENDER, SOURCE, DEST, DELIVERY_CONTENT, DELIVERY_AMOUNT, CURRENT_STATUS, EMP_CODE, DELIVERY_DATE, DELIVERY_CODE) values (#{receiver}, #{sender}, #{source}, #{dest}, #{deliveryContent}, #{deliveryAmount}, #{currentStatus}, #{empCode}, #{deliveryDate}, #{deliveryCode});
         END;
     </insert>
 

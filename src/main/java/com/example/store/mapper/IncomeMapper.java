@@ -10,4 +10,5 @@ public interface IncomeMapper {
     public List<IncomeDto> SelectAllIncome();
     public void InsertIncome(IncomeDto incomeDto);
     public void UpdateIncome(IncomeDto incomeDto);
+    public IncomeDto SelectIncomeByDateCode(String incomeDate, String incomeCode);
 }

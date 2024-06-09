@@ -15,7 +15,7 @@
 
     <insert id="InsertMileage" parameterType="com.example.store.dto.MembershipDto">
         BEGIN
-           insert into MEMBERSHIP(MEMBERSHIP_CODE, MEMBERSHIP_NAME, MEMBERSHIP_AGE, MEMBERSHIP_GENDER, MEMBERSHIP_MAIL_NO, MEMBERSHIP_PHONE_NO, MEMBERSHIP_MILEAGE) values (#{MEMBERSHIP_CODE}, #{MEMBERSHIP_NAME}, #{MEMBERSHIP_AGE}, #{MEMBERSHIP_GENDER}, #{MEMBERSHIP_MAIL_NO}, #{MEMBERSHIP_PHONE_NO}, #{MEMBERSHIP_MILEAGE});
+           insert into MEMBERSHIP(MEMBERSHIP_CODE, MEMBERSHIP_NAME, MEMBERSHIP_AGE, MEMBERSHIP_GENDER, MEMBERSHIP_MAIL_NO, MEMBERSHIP_PHONE_NO, MEMBERSHIP_MILEAGE) values (#{membershipCode}, #{membershipName}, #{membershipAge}, #{membershipGender}, #{membershipMailNo}, #{membershipPhoneNo}, #{membershipMileage});
         END;
     </insert>
 

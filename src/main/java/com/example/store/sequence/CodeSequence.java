@@ -13,9 +13,23 @@ public class CodeSequence {
     private static int maintainCode = 0;
     private static int orderCode = 0;
     private static int companyCode = 0;
+    private static int membershipCode = 0;
+    private static int productCode = 0;
     private static final int MAX_CODE_VALUE = 999999;
 
     //아래 3개가 지출에 대한 코드
+
+    public String getPurchaseCode(){
+        return String.format("%02d%06d", 12, purchaseCode);
+    }
+
+    public synchronized String generateProductCode() {
+        if (productCode >= MAX_CODE_VALUE) {
+            productCode = 0;
+        }
+        productCode++;
+        return String.format("%04d", productCode);
+    }
 
     public synchronized String generateEmployeeCode() {
         if (employeeCode >= MAX_CODE_VALUE) {
@@ -25,12 +39,15 @@ public class CodeSequence {
         return String.format("%02d%04d", 00, employeeCode);
     }
 
-    public synchronized String generateMaintainCode() {
+    public synchronized String generateMaintainCode(String typeCode) {
         if (maintainCode >= MAX_CODE_VALUE) {
             maintainCode = 0;
         }
         maintainCode++;
-        return String.format("%02d%04d", 01, maintainCode);
+        if (typeCode.equals("전기세")) {return String.format("%02d%02d%02d", 01, 00, maintainCode);}
+        else if (typeCode.equals("임대료")) {return String.format("%02d%02d%02d", 01, 01, maintainCode);}
+        else if (typeCode.equals("인건비")) {return String.format("%02d%02d%02d", 01, 02, maintainCode);}
+        else return "";
     }
 
     public synchronized String generateOrderCode() {
@@ -89,6 +106,13 @@ public class CodeSequence {
         }
         companyCode++;
         return String.format("%04d", companyCode);
+    }
+    public synchronized String generateMembershipCode() {
+        if (membershipCode >= MAX_CODE_VALUE) {
+            membershipCode = 0;
+        }
+        membershipCode++;
+        return String.format("%04d", membershipCode);
     }
 
     public void ResetCode(){

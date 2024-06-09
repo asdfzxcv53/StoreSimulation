@@ -4,21 +4,25 @@
 
 <mapper namespace="com.example.store.mapper.PurListMapper">
     <resultMap id="PurListDto" type="com.example.store.dto.PurListDto">
-        <result property="PURCHASE_PRODUCT_QUANTITY" column="PURCHASE_PRODUCT_QUANTITY"/>
-        <result property="PURCHASE_PRODUCT_PRICE" column="PURCHASE_PRODUCT_PRICE"/>
-        <result property="ACC_MILEAGE" column="ACC_MILEAGE"/>
-        <result property="PRODUCT_CODE" column="PRODUCT_CODE"/>
-        <result property="PURCHASE_DATE" column="PURCHASE_DATE"/>
-        <result property="PURCHASE_CODE" column="PURCHASE_CODE"/>
+        <result property="purchaseProductQuantity" column="PURCHASE_PRODUCT_QUANTITY"/>
+        <result property="purchaseProductPrice" column="PURCHASE_PRODUCT_PRICE"/>
+        <result property="accMileage" column="ACC_MILEAGE"/>
+        <result property="productCode" column="PRODUCT_CODE"/>
+        <result property="purchaseDate" column="PURCHASE_DATE"/>
+        <result property="purchaseCode" column="PURCHASE_CODE"/>
     </resultMap>
 
     <insert id="InsertPurList" parameterType="com.example.store.dto.PurListDto">
         BEGIN
-            insert into PUR_LIST(PURCHASE_PRODUCT_QUANTITY, PURCHASE_PRODUCT_PRICE, ACC_MILEAGE, PRODUCT_CODE, PURCHASE_DATE, PURCHASE_CODE) values (#{PURCHASE_PRODUCT_QUANTITY}, #{PURCHASE_PRODUCT_PRICE}, #{ACC_MILEAGE}, #{PRODUCT_CODE}, #{PURCHASE_DATE}, #{PURCHASE_CODE});
+            insert into PUR_LIST(PURCHASE_PRODUCT_QUANTITY, PURCHASE_PRODUCT_PRICE, ACC_MILEAGE, PRODUCT_CODE, PURCHASE_DATE, PURCHASE_CODE) values (#{purchaseProductQuantity}, #{purchaseProductPrice}, #{accMileage}, #{productCode}, #{purchaseDate}, #{purchaseCode});
         END;
     </insert>
 
     <select id="SelectAllPurList" resultMap="PurListDto">
         select * from PUR_LIST
+    </select>
+
+    <select id="SelectPurListByDateCode" parameterType="com.example.store.dto.PurListDto" resultMap="PurListDto">
+        select * from PUR_LIST where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purhcaseCode}
     </select>
 </mapper>

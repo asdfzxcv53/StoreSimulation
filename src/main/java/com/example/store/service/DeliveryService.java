@@ -51,6 +51,8 @@ public class DeliveryService {
         //delivery 넣어주고
         deliveryDto.setDeliveryCode(deliveryCode);
         deliveryDto.setDeliveryDate(formattedDate);
+        deliveryDto.setCurrentStatus("배송전");
+        System.out.println(deliveryDto);
         deliveryMapper.InsertDelivery(deliveryDto);
     }
 }

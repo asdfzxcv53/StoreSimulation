@@ -26,6 +26,7 @@ public class ATMController {
 
     @PostMapping("/regist")
     public ResponseEntity<?> InsertATM(@RequestBody ATMDto atmDto) {
+        System.out.println(atmDto);
         atmService.InsertATM(atmDto);
         return ResponseEntity.ok().build();
     }

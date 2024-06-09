@@ -5,13 +5,13 @@
 <mapper namespace="com.example.store.mapper.OutcomeMapper">
     <resultMap id="OutcomeDto" type="com.example.store.dto.OutcomeDto">
         <result property="outcomeAmount" column="OUTCOME_AMOUNT"/>
-        <result property="outcomeCpde" column="OUTCOME_CODE"/>
+        <result property="outcomeCode" column="OUTCOME_CODE"/>
         <result property="outcomeDate" column="OUTCOME_DATE"/>
     </resultMap>
 
     <insert id="InsertOutcome" parameterType="com.example.store.dto.OutcomeDto">
         BEGIN
-           insert into outcome(OUTCOME_AMOUNT, OUTCOME_CODE, OUTCOME_DATE) values (#{OUTCOME_AMOUNT}, #{OUTCOME_CODE}, #{OUTCOME_DATE});
+           insert into outcome(OUTCOME_AMOUNT, OUTCOME_CODE, OUTCOME_DATE) values (#{outcomeAmount}, #{outcomeCode}, #{outcomeDate});
         END;
     </insert>
 

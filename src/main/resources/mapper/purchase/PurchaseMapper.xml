@@ -22,11 +22,15 @@
 
     <insert id="InsertPurchase" parameterType="com.example.store.dto.PurchaseDto">
         BEGIN
-           insert into PURCHASE(PURCHASE_MILEAGE, CARD_ACCOUNT_NO, CARD_PURCHASE_AMOUNT, VOUCHER_NO, VOUCHER_PURCHASE_AMOUNT, COUPON_NO, COUPON_PURCHASE_AMOUNT, CASH_PURCHASE_AMOUNT, USE_MILEAGE, EMP_CODE, MEMBERSHIP_CODE, PURCHASE_DATE, PURCHASE_CODE, PURCHASE_AMOUNT) values (#{PURCHASE_MILEAGE}, #{CARD_ACCOUNT_NO}, #{CARD_PURCHASE_AMOUNT}, #{VOUCHER_NO}, #{VOUCHER_PURCHASE_AMOUNT}, #{COUPON_NO}, #{COUPON_PURCHASE_AMOUNT}, #{CASH_PURCHASE_AMOUNT}, #{USE_MILEAGE}, #{EMP_CODE}, #{MEMBERSHIP_CODE}, #{PURCHASE_DATE}, #{PURCHASE_CODE}, #{PURCHASE_AMOUNT});
+           insert into PURCHASE(PURCHASE_MILEAGE, CARD_ACCOUNT_NO, CARD_PURCHASE_AMOUNT, VOUCHER_NO, VOUCHER_PURCHASE_AMOUNT, COUPON_NO, COUPON_PURCHASE_AMOUNT, CASH_PURCHASE_AMOUNT, USE_MILEAGE, EMP_CODE, MEMBERSHIP_CODE, PURCHASE_DATE, PURCHASE_CODE, PURCHASE_AMOUNT) values (#{purchaseMileage}, #{cardAccountNo}, #{cardPurchaseAmount}, #{voucherNo}, #{voucherPurchaseAmount}, #{couponNo}, #{couponPurchaseAmount}, #{cashPurchaseAmount}, #{useMileage}, #{empCode}, #{membershipCode}, #{purchaseDate}, #{purchaseCode}, #{purchaseAmount});
         END;
     </insert>
 
     <select id="SelectAllPurchase" resultMap="PurchaseDto">
         select * from purchase
+    </select>
+
+    <select id="SelectPurchaseByDateCode" parameterType="com.example.store.dto.PurchaseDto" resultMap="PurchaseDto">
+        select * from PURCHASE where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purchaseCode}
     </select>
 </mapper>

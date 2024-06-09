@@ -1,7 +1,9 @@
 package com.example.store.controller;
 
-import com.example.store.dto.PurchaseDto;
+import com.example.store.dto.*;
 import com.example.store.service.PurchaseService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +14,9 @@ import java.util.List;
 public class PurchaseController {
     private final PurchaseService purchaseService;
 
+
     @Autowired
-    public PurchaseController(PurchaseService purchaseService) {
+    public PurchaseController(PurchaseService purchaseService, ObjectMapper objectMapper) {
         this.purchaseService = purchaseService;
     }
 
@@ -24,6 +27,8 @@ public class PurchaseController {
 
     @PostMapping("/regist")
     public ResponseEntity<?> InsertPurchase(@RequestBody PurchaseDto purchaseDto){
+        System.out.println("??????????");
+
         purchaseService.InsertPurchase(purchaseDto);
         return ResponseEntity.ok().build();
     }

@@ -15,7 +15,7 @@
 
     <insert id="InsertCharge" parameterType="com.example.store.dto.ChargeDto">
         BEGIN
-            insert into charge(PAY_DATE, CHARGE_CODE, INST_NAME, CHARGE_NAME, PAYER, PAY_AMOUNT, EMP_CODE) values (#{PAY_DATE}, #{CHARGE_CODE}, #{INST_NAME}, #{CHARGE_NAME}, #{PAYER}, #{PAY_AMOUNT}, #{EMP_CODE});
+            insert into charge(PAY_DATE, CHARGE_CODE, INST_NAME, CHARGE_NAME, PAYER, PAY_AMOUNT, EMP_CODE) values (#{payDate}, #{chargeCode}, #{instName}, #{chargeName}, #{payer}, #{payAmount}, #{empCode});
         END;
     </insert>
 

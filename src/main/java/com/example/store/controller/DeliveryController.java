@@ -4,14 +4,12 @@ import com.example.store.dto.DeliveryDto;
 import com.example.store.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/delivery")
 public class DeliveryController {
     private final DeliveryService deliveryService;
 
@@ -25,8 +23,10 @@ public class DeliveryController {
         return deliveryService.SelectAllDelivery();
     }
 
-    @PostMapping
+    @PostMapping("/regist")
     public ResponseEntity<?> InsertDelivery(@RequestBody DeliveryDto deliveryDto){
+        System.out.println(deliveryDto);
+
         deliveryService.InsertDelivery(deliveryDto);
         return ResponseEntity.ok().build();
     }

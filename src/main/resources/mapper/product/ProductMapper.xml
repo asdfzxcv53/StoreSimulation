@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.store.mapper.ProductMapper">
-    <select id="CountProduct" resultType="Integer">
-        select count(*) from product
-    </select>
-    <select id="SelectAllProduct" resultType="com.example.store.dto.ProductDto">
+    <resultMap id="ProductDto" type="com.example.store.dto.ProductDto">
+        <result property="productCode" column="PRODUCT_CODE"/>
+        <result property="productName" column="PRODUCT_NAME"/>
+        <result property="productPrice" column="PRODUCT_PRICE"/>
+        <result property="pbProduct" column="PB_PRODUCT"/>
+    </resultMap>
+
+    <insert id="InsertProduct" parameterType="com.example.store.dto.ProductDto">
+        BEGIN
+            insert into product(PRODUCT_CODE, PRODUCT_NAME, PRODUCT_PRICE, PB_PRODUCT) values (#{productCode}, #{productName}, #{productPrice}, #{pbProduct});
+        END;
+    </insert>
+
+    <select id="SelectAllProduct" resultMap="ProductDto">
         select * from product
     </select>
-    <select id="SelectProductByCode" parameterType="String" resultType="com.example.store.dto.ProductDto">
-        select * from product where product_code = #{productCode}
+
+    <select id="SelectProductByCode" parameterType="String" resultMap="ProductDto">
+        select * from PRODUCT where PRODUCT_CODE = #{CODE}
     </select>
-    <select id="SelectProductByName" parameterType="String" resultType="com.example.store.dto.ProductDto">
-        select * from product where product_name = #{productName}
-    </select>
-    <insert id="InsertProduct" parameterType="com.example.store.dto.ProductDto">
-        insert into product values (PRODUCT_SEQ.nextval, #{productName}, #{productPrice}, #{pbProduct})
-    </insert>
-    <update id="UpdateProduct" parameterType="com.example.store.dto.ProductDto">
-        update product
-        set PRODUCT_NAME = #{productName},
-            PRODUCT_PRICE = #{productPrice},
-            PB_PRODUCT = #{pbProduct}
-        where PRODUCT_CODE = #{productCode}
-    </update>
-    <delete id="DeleteProduct" parameterType="String">
-        delete from product where PRODUCT_CODE = #{productCode}
-    </delete>
 </mapper>

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.store.mapper.StorageMapper">
-    <resultMap id="storageDTO" type="com.example.demo.store.StorageDto">
+    <resultMap id="StorageDto" type="com.example.store.dto.StorageDto">
         <result property="productName" column="PRODUCT_NAME"/>
         <result property="storageQuantity" column="STORAGE_QUANTITY"/>
         <result property="productPrice" column="PRODUCT_PRICE"/>
@@ -14,7 +14,7 @@
 
     <insert id="InsertStorage" parameterType="com.example.store.dto.StorageDto">
         BEGIN
-            insert into STORAGE(PRODUCT_NAME, STORAGE_QUANTITY, PRODUCT_PRICE, PRODUCT_DC, PB_PRODUCT, PRODUCT_CODE) values (#{PRODUCT_NAME}, #{STORAGE_QUANTITY}, #{PRODUCT_PRICE}, #{PRODUCT_DC}, #{PB_PRODUCT}, #{PRODUCT_CODE});
+            insert into STORAGE(PRODUCT_NAME, STORAGE_QUANTITY, PRODUCT_PRICE, PRODUCT_DC, PB_PRODUCT, PRODUCT_CODE) values (#{productName}, #{storageQuantity}, #{productPrice}, #{productDc}, #{pbProduct}, #{productCode});
         END;
     </insert>
 

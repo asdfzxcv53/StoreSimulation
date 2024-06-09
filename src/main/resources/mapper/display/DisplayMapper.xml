@@ -15,7 +15,7 @@
 
     <insert id="InsertDisplay" parameterType="com.example.store.dto.DisplayDto">
         BEGIN
-           insert into DISPLAY(PRODUCT_NAME, DISPLAY_QUANTITY, PRODUCT_PRICE, PRODUCT_DC, PB_PRODUCT, PRODUCT_CODE) values (#{PRODUCT_NAME}, #{DISPLAY_QUANTITY}, #{PRODUCT_PRICE}, #{PRODUCT_DC}, #{PB_PRODUCT}, #{PRODUCT_CODE});
+           insert into DISPLAY(PRODUCT_NAME, DISPLAY_QUANTITY, PRODUCT_PRICE, PRODUCT_DC, PB_PRODUCT, PRODUCT_CODE, GIFT_PRODUCT) values (#{productName}, #{displayQuantity}, #{productPrice}, #{productDc}, #{pbProduct}, #{productCode}, #{giftProduct});
         END;
     </insert>
 

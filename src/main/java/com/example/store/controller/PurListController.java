@@ -22,7 +22,7 @@ public class PurListController {
     }
 
     @PostMapping("/regist")
-    public ResponseEntity<?> InsertPurList(@RequestBody PurListDto purListDto){
+    public ResponseEntity<?> InsertPurList(@RequestBody List<PurListDto> purListDto){
         purListService.InsertPurList(purListDto);
         return ResponseEntity.ok().build();
     }

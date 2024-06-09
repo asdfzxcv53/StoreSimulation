@@ -25,4 +25,8 @@ public class IncomeService {
     public void UpdateIncome(IncomeDto incomeDto){
         incomeMapper.UpdateIncome(incomeDto);
     }
+
+    public IncomeDto SelectIncomeByDateCode(String incomeDate, String incomeCode){
+        return incomeMapper.SelectIncomeByDateCode(incomeDate,incomeCode);
+    }
 }

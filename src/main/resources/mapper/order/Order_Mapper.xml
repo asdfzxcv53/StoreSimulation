@@ -11,7 +11,7 @@
 
     <insert id="InsertOrder" parameterType="com.example.store.dto.OrderDto">
         BEGIN
-           insert into ORDER_(ORDER_AMOUNT, ORDER_CODE, ORDER_DATE) values (#{ORDER_AMOUNT}, #{ORDER_CODE}, #{ORDER_DATE});
+           insert into ORDER_(ORDER_AMOUNT, ORDER_CODE, ORDER_DATE) values (#{orderAmount}, #{orderCode}, #{orderDate});
         END;
     </insert>
 

@@ -13,7 +13,7 @@
 
     <insert id="InsertDiscardList" parameterType="com.example.store.dto.DiscardListDto">
         BEGIN
-            insert into DISCARD_LIST(DISCARD_DATE, DISCARD_TYPE_CODE, DISCARD_QUANTITY, EMP_CODE, PRODUCT_CODE) values (#{DISCARD_DATE}, #{DISCARD_TYPE_CODE}, #{DISCARD_QUANTITY}, #{EMP_CODE}, #{PRODUCT_CODE});
+            insert into DISCARD_LIST(DISCARD_DATE, DISCARD_TYPE_CODE, DISCARD_QUANTITY, EMP_CODE, PRODUCT_CODE) values (#{discardDate}, #{discardTypeCode}, #{discardQuantity}, #{empCode}, #{productCode});
         END;
     </insert>
 

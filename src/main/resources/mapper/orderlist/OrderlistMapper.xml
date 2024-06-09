@@ -14,7 +14,7 @@
 
     <insert id="InsertOrderList" parameterType="com.example.store.dto.OrderListDto">
         BEGIN
-           insert into ORDER_LIST(ORDER_PRODUCT_QUANTITY, ORDER_PRODUCT_PRICE, COMPANY_CODE, PRODUCT_CODE, ORDER_CODE, ORDER_DATE) values (#{ORDER_PRODUCT_QUANTITY}, #{ORDER_PRODUCT_PRICE}, #{COMPANY_CODE}, #{PRODUCT_CODE}, #{ORDER_CODE}, #{ORDER_DATE});
+           insert into ORDER_LIST(ORDER_PRODUCT_QUANTITY, ORDER_PRODUCT_PRICE, COMPANY_CODE, PRODUCT_CODE, ORDER_CODE, ORDER_DATE) values (#{orderProductQuantity}, #{orderProductPrice}, #{companyCode}, #{productCode}, #{orderCode}, #{orderDate});
         END;
     </insert>
 

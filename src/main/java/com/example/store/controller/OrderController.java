@@ -1,6 +1,8 @@
 package com.example.store.controller;
 
 import com.example.store.dto.OrderDto;
+import com.example.store.dto.OrderOrderListDto;
+import com.example.store.dto.ReceiveDto;
 import com.example.store.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +24,21 @@ public class OrderController {
         return orderService.SelectAllOrder();
     }
 
-    @PostMapping("/insert")
-    public ResponseEntity<?> InsertOrder(@RequestBody OrderDto orderDto){
-        orderService.InsertOrder(orderDto);
+    @PostMapping("/regist")
+    public ResponseEntity<?> InsertOrder(@RequestBody OrderOrderListDto orderOrderListDto){
+        orderService.InsertOrder(orderOrderListDto);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/update")
     public ResponseEntity<?> UpdateOrder(@RequestBody OrderDto orderDto){
         orderService.UpdateOrder(orderDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/receive") // 제품을 납품받는 경우
+    public ResponseEntity<?> ReceiveOrder(@RequestBody ReceiveDto receiveDto) {
+
         return ResponseEntity.ok().build();
     }
 }

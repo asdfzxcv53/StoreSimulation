@@ -14,6 +14,7 @@ public class EmployeeDto {
     private String empGender;
     private String empPhoneNo;
     private String empMailNo;
+    private String empBankName;
     private String empAccountNo;
     private String part;
     private Long salary;

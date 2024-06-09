@@ -7,8 +7,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class OutcomeDto {
-    private String outcomeDate;
-    private String outcomeCode;
-    private Long outcomeAmount;
+public class NewDiscardProductDto {
+
+    private String productCode;
+    private Long discardQuantity;
 }

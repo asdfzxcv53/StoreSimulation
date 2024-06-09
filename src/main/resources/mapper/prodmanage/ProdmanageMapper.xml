@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.store.mapper.ProdManageMapper">
-    <resultMap id="ProdManageDto" type="com.example.demo.dto.ProdManageDto">
+    <resultMap id="ProdManageDto" type="com.example.store.dto.ProdManageDto">
         <result property="manageDate" column="MANAGE_DATE"/>
         <result property="manageTypeCode" column="MANAGE_TYPE_CODE"/>
         <result property="errorQuantity" column="ERROR_QUANTITY"/>
@@ -14,7 +14,7 @@
 
     <insert id="InsertProdManage" parameterType="com.example.store.dto.ProdManageDto">
         BEGIN
-           insert into PROD_MANAGE(MANAGE_DATE, MANAGE_TYPE_CODE, ERROR_QUANTITY, ERROR_REASON, EMP_CODE, PRODUCT_CODE) values (#{MANAGE_DATE}, #{MANAGE_TYPE_CODE}, #{ERROR_QUANTITY}, #{ERROR_REASON}, #{EMP_CODE}, #{PRODUCT_CODE});
+           insert into PROD_MANAGE(MANAGE_DATE, MANAGE_TYPE_CODE, ERROR_QUANTITY, ERROR_REASON, EMP_CODE, PRODUCT_CODE) values (#{manageDate}, #{manageTypeCode}, #{errorQuantity}, #{errorReason}, #{empCode}, #{productCode});
         END;
     </insert>
 

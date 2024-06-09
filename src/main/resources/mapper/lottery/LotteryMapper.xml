@@ -10,9 +10,9 @@
         <result property="empCode" column="EMP_CODE"/>
     </resultMap>
 
-    <insert id="InsertLottery" parameterType="com.example.demo.dto.LotteryDto">
+    <insert id="InsertLottery" parameterType="com.example.store.dto.LotteryDto">
         BEGIN
-            insert into lottery(lottery_sale_date, lottery_code, lottery_no, emp_code) values (#{LOTTERY_SALE_DATE}, #{LOTTERY_CODE}, #{LOTTERY_NO}, #{EMP_CODE});
+            insert into lottery(lottery_sale_date, lottery_code, lottery_no, emp_code) values (#{lotterySaleDate}, #{lotteryCode}, #{lotteryNo}, #{empCode});
         END;
     </insert>
 
