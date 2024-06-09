@@ -95,7 +95,7 @@ public class CodeSequence {
         chargeCode = 0;
         atmCode = 0;
         deliveryCode = 0;
-        lottaryCode = 0;
+        lotteryCode = 0;
         purchaseCode = 0;
         maintainCode = 0;
         orderCode = 0;

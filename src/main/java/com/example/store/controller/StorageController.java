@@ -53,7 +53,7 @@ public class StorageController {
     public ResponseEntity<?> MoveDisplay(@RequestBody List<Map<String, Long>> moveData){
         moveData.forEach(map -> {
             map.forEach((key, value) -> {
-                displayService.MoveDisplay(key, value);
+                storageService.MoveDisplay(key, value);
             });
         });
         return ResponseEntity.ok().build();
