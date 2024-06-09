@@ -9,4 +9,6 @@ import java.util.List;
 public interface CompanyMapper {
     public List<CompanyDto> SelectAllCompany();
     public void InsertCompany(CompanyDto companyDto);
+    public void DeleteCompanyByCode(String companyCode);
+    public void UpdateCompany(CompanyDto companyDto);
 }

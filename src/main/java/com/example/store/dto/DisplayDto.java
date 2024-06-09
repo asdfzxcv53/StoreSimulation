@@ -13,4 +13,5 @@ public class DisplayDto {
     private Long productPrice;
     private Long productDc;
     private String pbProduct;
+    private String giftProduct;
 }

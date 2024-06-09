@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.ChargeMapper">
+    <resultMap id = "ChargeDto" type="com.example.store.dto.ChargeDto">
+        <result property="payDate" column="PAY_DATE"/>
+        <result property="chargeCode" column="CHARGE_CODE"/>
+        <result property="instName" column="INST_NAME"/>
+        <result property="chargeName" column="CHARGE_NAME"/>
+        <result property="payer" column="PAYER"/>
+        <result property="payAmount" column="PAY_AMOUNT"/>
+        <result property="empCode" column="EMP_CODE"/>
+    </resultMap>
+
+    <insert id="InsertCharge" parameterType="com.example.store.dto.ChargeDto">
+        BEGIN
+            insert into charge(PAY_DATE, CHARGE_CODE, INST_NAME, CHARGE_NAME, PAYER, PAY_AMOUNT, EMP_CODE) values (#{PAY_DATE}, #{CHARGE_CODE}, #{INST_NAME}, #{CHARGE_NAME}, #{PAYER}, #{PAY_AMOUNT}, #{EMP_CODE});
+        END;
+    </insert>
+
+    <select id="SelectAllCharge" resultMap="ChargeDto">
+        select * from charge
+    </select>
+</mapper>

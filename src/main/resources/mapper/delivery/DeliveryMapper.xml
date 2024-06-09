@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.DeliveryMapper">
+    <resultMap id="DeliveryDto" type="com.example.store.dto.DeliveryDto">
+        <result property="receiver" column="RECEIVER"/>
+        <result property="sender" column="SENDER"/>
+        <result property="source" column="SOURCE"/>
+        <result property="dest" column="DEST"/>
+        <result property="deliveryContent" column="DELIVERY_CONTENT"/>
+        <result property="deliveryAmount" column="DELIVERY_AMOUNT"/>
+        <result property="currentStatus" column="CURRENT_STATUS"/>
+        <result property="empCode" column="EMP_CODE"/>
+        <result property="deliveryDate" column="DELIVERY_DATE"/>
+        <result property="deliveryCode" column="DELIVERY_CODE"/>
+    </resultMap>
+
+    <insert id="InsertDelivery" parameterType="com.example.store.dto.DeliveryDto">
+        BEGIN
+            insert into delivery(RECEIVER, SENDER, SOURCE, DEST, DELIVERY_CONTENT, DELIVERY_AMOUNT, CURRENT_STATUS, EMP_CODE, DELIVERY_DATE, DELIVERY_CODE) values (#{RECEIVER}, #{SENDER}, #{SOURCE}, #{DEST}, #{DELIVERY_CONTENT}, #{DELIVERY_AMOUNT}, #{CURRENT_STATUS}, #{EMP_CODE}, #{DELIVERY_DATE}, #{DELIVERY_CODE});
+        END;
+    </insert>
+
+    <select id="SelectAllDelivery" resultMap="DeliveryDto">
+        select * from DELIVERY
+    </select>
+</mapper>

@@ -21,4 +21,8 @@ public class IncomeService {
     public void InsertIncome(IncomeDto incomeDto){
         incomeMapper.InsertIncome(incomeDto);
     }
+
+    public void UpdateIncome(IncomeDto incomeDto){
+        incomeMapper.UpdateIncome(incomeDto);
+    }
 }

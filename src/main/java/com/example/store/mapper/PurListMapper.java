@@ -9,4 +9,5 @@ import java.util.List;
 public interface PurListMapper {
     public List<PurListDto> SelectAllPurList();
     public void InsertPurList(PurListDto purListDto);
+    public void UpdatePurList(PurListDto purListDto);
 }

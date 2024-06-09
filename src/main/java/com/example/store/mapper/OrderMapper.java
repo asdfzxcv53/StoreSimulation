@@ -9,4 +9,5 @@ import java.util.List;
 public interface OrderMapper {
     public List<OrderDto> SelectAllOrder();
     public void InsertOrder(OrderDto orderDto);
+    public void UpdateOrder(OrderDto orderDto);
 }

@@ -18,7 +18,20 @@ public class DisplayService {
         return displayMapper.SelectAllDisplay();
     }
 
+    public DisplayDto SelectDisplayByCode(String productCode) {
+        return displayMapper.SelectDisplayByCode(productCode);
+    }
+
     public void InsertDisplay(DisplayDto displayDto) {
         displayMapper.InsertDisplay(displayDto);
     }
+
+    public void UpdateDisplay(DisplayDto displayDto) {
+        displayMapper.UpdateDisplay(displayDto);
+    }
+
+    public void DeleteDisplayByCode(String displayCode) {
+        displayMapper.DeleteDisplayByCode(displayCode);
+    }
+
 }

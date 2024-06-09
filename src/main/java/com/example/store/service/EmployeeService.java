@@ -25,4 +25,11 @@ public class EmployeeService {
     public void InsertEmployee (EmployeeDto employeeDto) {
         employeeMapper.InsertEmployee(employeeDto);
     }
+
+    public void UpdateEmployee (EmployeeDto employeeDto) {
+        employeeMapper.UpdateEmployee(employeeDto);
+    }
+    public void DeleteEmployeeByCode (String empCode) {
+        employeeMapper.DeleteEmployeeByCode(empCode);
+    }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.CompanyMapper">
+    <resultMap id="CompanyDto" type="com.example.store.dto.CompanyDto">
+        <result property="companyCode" column="COMPANY_CODE"/>
+        <result property="companyName" column="COMPANY_NAME"/>
+        <result property="companyPhoneNo" column="COMPANY_PHONE_NO"/>
+        <result property="companyMailNo" column="COMPANY_MAIL_NO"/>
+    </resultMap>
+
+    <insert id="InsertCompany" parameterType="com.example.store.dto.CompanyDto">
+        BEGIN
+           insert into company(COMPANY_CODE, COMPANY_NAME, COMPANY_PHONE_NO, COMPANY_MAIL_NO) values (#{companyCode}, #{companyName}, #{companyPhoneNo}, #{companyMailNo});
+        END;
+    </insert>
+
+    <select id="SelectAllCompany" resultMap="CompanyDto">
+        select * from company
+    </select>
+    <delete id="DeleteCompanyByCode" parameterType="String">
+        delete from COMPANY where COMPANY_CODE = #{companyCode}
+    </delete>
+    <update id="UpdateCompany" parameterType="com.example.store.dto.CompanyDto">
+        update COMPANY set COMPANY_NAME = #{companyName},
+                           COMPANY_PHONE_NO = #{companyPhoneNo},
+                           COMPANY_MAIL_NO = #{companyMailNo}
+        WHERE COMPANY_CODE = #{companyCode}
+    </update>
+</mapper>

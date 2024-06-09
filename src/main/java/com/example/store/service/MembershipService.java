@@ -21,4 +21,8 @@ public class MembershipService {
     public void InsertMembership(MembershipDto membershipDto) {
         membershipMapper.InsertMembership(membershipDto);
     }
+
+    public void UpdateMembership(MembershipDto membershipDto) {
+        membershipMapper.UpdateMembership(membershipDto);
+    }
 }

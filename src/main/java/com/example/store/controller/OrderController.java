@@ -22,9 +22,15 @@ public class OrderController {
         return orderService.SelectAllOrder();
     }
 
-    @PostMapping
+    @PostMapping("/insert")
     public ResponseEntity<?> InsertOrder(@RequestBody OrderDto orderDto){
         orderService.InsertOrder(orderDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdateOrder(@RequestBody OrderDto orderDto){
+        orderService.UpdateOrder(orderDto);
         return ResponseEntity.ok().build();
     }
 }

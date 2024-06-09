@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.MaintainMapper">
+    <resultMap id="MaintainDto" type="com.example.store.dto.MaintainDto">
+        <result property="maintainAmount" column="MAINTAIN_AMOUNT"/>
+        <result property="empCode" column="EMP_CODE"/>
+        <result property="maintainCode" column="MAINTAIN_CODE"/>
+        <result property="maintainDate" column="MAINTAIN_DATE"/>
+    </resultMap>
+
+    <insert id="InsertMaintain" parameterType="com.example.store.dto.MaintainDto">
+        BEGIN
+           insert into maintain(MAINTAIN_AMOUNT, EMP_CODE, MAINTAIN_CODE, MAINTAIN_DATE) values (#{MAINTAIN_AMOUNT}, #{EMP_CODE}, #{MAINTAIN_CODE}, #{MAINTAIN_DATE});
+        END;
+    </insert>
+
+    <select id="SelectAllMaintain" resultMap="MaintainDto">
+        select * from maintain
+    </select>
+</mapper>

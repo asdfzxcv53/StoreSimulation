@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/product")
@@ -30,5 +31,21 @@ public class ProductController {
     public ResponseEntity<?> InsertProduct(@RequestBody ProductDto productDto){
         productService.InsertProduct(productDto);
         return ResponseEntity.ok("Product added successfully");
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdateProduct(@RequestBody ProductDto productDto){
+        productService.UpdateProduct(productDto);
+        return ResponseEntity.ok("Product updated successfully");
+    }
+
+    @PostMapping("/deregist")
+    public ResponseEntity<?> DeleteProductByCode(@RequestBody Map<String, List<String>> productCodeMap){
+        for (Map.Entry<String, List<String>> entry : productCodeMap.entrySet()) {
+            for (String productCode : entry.getValue()) {
+                productService.DeleteProductByCode(productCode);
+            }
+        }
+        return ResponseEntity.ok("Product deleted successfully");
     }
 }

@@ -27,4 +27,10 @@ public class MembershipController {
         membershipService.InsertMembership(membershipDto);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdateMembership(@RequestBody MembershipDto membershipDto) {
+        membershipService.UpdateMembership(membershipDto);
+        return ResponseEntity.ok().build();
+    }
 }

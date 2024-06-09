@@ -22,4 +22,8 @@ public class PurListService {
     public void InsertPurList(PurListDto purListDto){
         purListMapper.InsertPurList(purListDto);
     }
+
+    public void UpdatePurList(PurListDto purListDto){
+        purListMapper.UpdatePurList(purListDto);
+    }
 }

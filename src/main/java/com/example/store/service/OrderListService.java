@@ -21,4 +21,8 @@ public class OrderListService {
     public void InsertOrderList(OrderListDto orderListDto){
         orderListMapper.InsertOrderList(orderListDto);
     }
+
+    public void UpdateOrderList(OrderListDto orderListDto){
+        orderListMapper.UpdateOrderList(orderListDto);
+    }
 }

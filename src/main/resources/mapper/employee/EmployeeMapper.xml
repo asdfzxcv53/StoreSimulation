@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.store.mapper.EmployeeMapper">
+    <resultMap id="EmployeeDto" type="com.example.store.dto.EmployeeDto">
+        <result property="empCode" column="EMP_CODE"/>
+        <result property="empName" column="EMP_NAME"/>
+        <result property="empAge" column="EMP_AGE"/>
+        <result property="empGender" column="EMP_GENDER"/>
+        <result property="empPhoneNo" column="EMP_PHONE_NO"/>
+        <result property="empMailNo" column="EMP_MAIL_NO"/>
+        <result property="empAccountNo" column="EMP_ACCOUNT_NO"/>
+        <result property="part" column="PART"/>
+        <result property="salary" column="SALARY"/>
+    </resultMap>
+
+    <insert id="InsertEmployee" parameterType="com.example.store.dto.EmployeeDto">
+        BEGIN
+            insert into employee(EMP_CODE, EMP_NAME, EMP_AGE, EMP_GENDER, EMP_PHONE_NO, EMP_MAIL_NO, EMP_ACCOUNT_NO, PART, SALARY) values (#{EMP_CODE}, #{EMP_NAME}, #{EMP_AGE}, #{EMP_GENDER}, #{EMP_PHONE_NO}, #{EMP_MAIL_NO}, #{EMP_ACCOUNT_NO}, #{PART}, #{SALARY});
+        END;
+    </insert>
+    <select id="SelectAllEmployee" resultMap="EmployeeDto">
+        select * from EMPLOYEE
+    </select>
+</mapper>

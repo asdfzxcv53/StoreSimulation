@@ -9,4 +9,5 @@ import java.util.List;
 public interface PurchaseMapper {
     public List<PurchaseDto> SelectAllPurchase();
     public void InsertPurchase(PurchaseDto purchaseDto);
+    public void UpdatePurchase(PurchaseDto purchaseDto);
 }

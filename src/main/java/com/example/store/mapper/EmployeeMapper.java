@@ -9,5 +9,6 @@ import java.util.List;
 public interface EmployeeMapper {
     public List<EmployeeDto> SelectAllEmployee();
     public void InsertEmployee(EmployeeDto employeeDto);
-
+    public void UpdateEmployee(EmployeeDto employeeDto);
+    public void DeleteEmployeeByCode(String empCode);
 }

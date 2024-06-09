@@ -8,5 +8,9 @@ import java.util.List;
 @Mapper
 public interface DisplayMapper {
     public List<DisplayDto> SelectAllDisplay();
+    public DisplayDto SelectDisplayByCode(String productCode);
     public void InsertDisplay(DisplayDto displayDto);
+    public void UpdateDisplay(DisplayDto displayDto);
+    public void DeleteDisplayByCode(String displayCode);
+
 }

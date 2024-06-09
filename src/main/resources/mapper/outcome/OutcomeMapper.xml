@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.OutcomeMapper">
+    <resultMap id="OutcomeDto" type="com.example.store.dto.OutcomeDto">
+        <result property="outcomeAmount" column="OUTCOME_AMOUNT"/>
+        <result property="outcomeCpde" column="OUTCOME_CODE"/>
+        <result property="outcomeDate" column="OUTCOME_DATE"/>
+    </resultMap>
+
+    <insert id="InsertOutcome" parameterType="com.example.store.dto.OutcomeDto">
+        BEGIN
+           insert into outcome(OUTCOME_AMOUNT, OUTCOME_CODE, OUTCOME_DATE) values (#{OUTCOME_AMOUNT}, #{OUTCOME_CODE}, #{OUTCOME_DATE});
+        END;
+    </insert>
+
+    <select id="SelectAllOutcome" resultMap="OutcomeDto">
+        select * from outcome
+    </select>
+</mapper>

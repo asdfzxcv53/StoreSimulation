@@ -27,4 +27,10 @@ public class PurchaseController {
         purchaseService.InsertPurchase(purchaseDto);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdatePurchase(@RequestBody PurchaseDto purchaseDto){
+        purchaseService.UpdatePurchase(purchaseDto);
+        return ResponseEntity.ok().build();
+    }
 }

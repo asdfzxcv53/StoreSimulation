@@ -27,4 +27,10 @@ public class IncomeController {
         incomeService.InsertIncome(incomeDto);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdateIncome(@RequestBody IncomeDto incomeDto){
+        incomeService.UpdateIncome(incomeDto);
+        return ResponseEntity.ok().build();
+    }
 }

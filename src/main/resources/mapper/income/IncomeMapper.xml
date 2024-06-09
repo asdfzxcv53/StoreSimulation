@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.IncomeMapper">
+    <resultMap id="IncomeDto" type="com.example.store.dto.IncomeDto">
+        <result property="incomeDate" column="INCOME_DATE"/>
+        <result property="incomeCode" column="INCOME_CODE"/>
+        <result property="incomeAmount" column="INCOME_AMOUNT"/>
+    </resultMap>
+
+    <insert id="InsertIncome" parameterType="com.example.store.dto.IncomeDto">
+        BEGIN
+            insert into income(income_date, income_code, income_amount) values (#{INCOME_DATE}, #{INCOME_CODE}, #{INCOME_AMOUNT});
+        END;
+    </insert>
+
+    <select id="SelectAllIncome" resultMap="IncomeDto">
+        select * from income
+    </select>
+</mapper>

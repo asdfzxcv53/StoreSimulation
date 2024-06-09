@@ -26,4 +26,10 @@ public class PurListController {
         purListService.InsertPurList(purListDto);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdatePurList(@RequestBody PurListDto purListDto){
+        purListService.UpdatePurList(purListDto);
+        return ResponseEntity.ok().build();
+    }
 }

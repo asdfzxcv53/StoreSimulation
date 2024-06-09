@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.MembershipMapper">
+    <resultMap id="MembershipDto" type="com.example.store.dto.MembershipDto">
+        <result property="membershipCode" column="MEMBERSHIP_CODE"/>
+        <result property="membershipName" column="MEMBERSHIP_NAME"/>
+        <result property="membershipAge" column="MEMBERSHIP_AGE"/>
+        <result property="membershipGender" column="MEMBERSHIP_GENDER"/>
+        <result property="membershipMailNo" column="MEMBERSHIP_MAIL_NO"/>
+        <result property="membershipPhoneNo" column="MEMBERSHIP_PHONE_NO"/>
+        <result property="membershipMileage" column="MEMBERSHIP_MILEAGE"/>
+    </resultMap>
+
+    <insert id="InsertMileage" parameterType="com.example.store.dto.MembershipDto">
+        BEGIN
+           insert into MEMBERSHIP(MEMBERSHIP_CODE, MEMBERSHIP_NAME, MEMBERSHIP_AGE, MEMBERSHIP_GENDER, MEMBERSHIP_MAIL_NO, MEMBERSHIP_PHONE_NO, MEMBERSHIP_MILEAGE) values (#{MEMBERSHIP_CODE}, #{MEMBERSHIP_NAME}, #{MEMBERSHIP_AGE}, #{MEMBERSHIP_GENDER}, #{MEMBERSHIP_MAIL_NO}, #{MEMBERSHIP_PHONE_NO}, #{MEMBERSHIP_MILEAGE});
+        END;
+    </insert>
+
+    <select id="SelectAllMileage" resultMap="MembershipDto">
+        select * from MEMBERSHIP
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.PurchaseMapper">
+    <resultMap id="PurchaseDto" type="com.example.store.dto.PurchaseDto">
+        <result property="purchaseMileage" column="PURCHASE_MILEAGE"/>
+        <result property="cardAccountNo" column="CARD_ACCOUNT_NO"/>
+        <result property="cardPurchaseAmount" column="CARD_PURCHASE_AMOUNT"/>
+        <result property="voucherNo" column="VOUCHER_NO"/>
+        <result property="voucherPurchaseAmount" column="VOUCHER_PURCHASE_AMOUNT"/>
+        <result property="couponNo" column="COUPON_NO"/>
+        <result property="couponPurchaseAmount" column="COUPON_PURCHASE_AMOUNT"/>
+        <result property="cashPurchaseAmount" column="CASH_PURCHASE_AMOUNT"/>
+        <result property="useMileage" column="USE_MILEAGE"/>
+        <result property="empCode" column="EMP_CODE"/>
+        <result property="membershipCode" column="MEMBERSHIP_CODE"/>
+        <result property="purchaseDate" column="PURCHASE_DATE"/>
+        <result property="purchaseCode" column="PURCHASE_CODE"/>
+        <result property="purchaseAmount" column="PURCHASE_AMOUNT"/>
+    </resultMap>
+
+    <insert id="InsertPurchase" parameterType="com.example.store.dto.PurchaseDto">
+        BEGIN
+           insert into PURCHASE(PURCHASE_MILEAGE, CARD_ACCOUNT_NO, CARD_PURCHASE_AMOUNT, VOUCHER_NO, VOUCHER_PURCHASE_AMOUNT, COUPON_NO, COUPON_PURCHASE_AMOUNT, CASH_PURCHASE_AMOUNT, USE_MILEAGE, EMP_CODE, MEMBERSHIP_CODE, PURCHASE_DATE, PURCHASE_CODE, PURCHASE_AMOUNT) values (#{PURCHASE_MILEAGE}, #{CARD_ACCOUNT_NO}, #{CARD_PURCHASE_AMOUNT}, #{VOUCHER_NO}, #{VOUCHER_PURCHASE_AMOUNT}, #{COUPON_NO}, #{COUPON_PURCHASE_AMOUNT}, #{CASH_PURCHASE_AMOUNT}, #{USE_MILEAGE}, #{EMP_CODE}, #{MEMBERSHIP_CODE}, #{PURCHASE_DATE}, #{PURCHASE_CODE}, #{PURCHASE_AMOUNT});
+        END;
+    </insert>
+
+    <select id="SelectAllPurchase" resultMap="PurchaseDto">
+        select * from purchase
+    </select>
+</mapper>

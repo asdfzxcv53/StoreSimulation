@@ -9,4 +9,5 @@ import java.util.List;
 public interface MembershipMapper {
     public List<MembershipDto> SelectAllMembership();
     public void InsertMembership(MembershipDto membershipDto);
+    public void UpdateMembership(MembershipDto membershipDto);
 }

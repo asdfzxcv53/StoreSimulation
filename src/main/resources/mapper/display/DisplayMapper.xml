@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.DisplayMapper">
+    <resultMap id="DisplayDto" type="com.example.store.dto.DisplayDto">
+        <result property="productName" column="PRODUCT_NAME"/>
+        <result property="displayQuantity" column="DISPLAY_QUANTITY"/>
+        <result property="productPrice" column="PRODUCT_PRICE"/>
+        <result property="productDc" column="PRODUCT_DC"/>
+        <result property="pbProduct" column="PB_PRODUCT"/>
+        <result property="productCode" column="PRODUCT_CODE"/>
+        <result property="giftProduct" column="GIFT_PRODUCT"/>
+    </resultMap>
+
+    <insert id="InsertDisplay" parameterType="com.example.store.dto.DisplayDto">
+        BEGIN
+           insert into DISPLAY(PRODUCT_NAME, DISPLAY_QUANTITY, PRODUCT_PRICE, PRODUCT_DC, PB_PRODUCT, PRODUCT_CODE) values (#{PRODUCT_NAME}, #{DISPLAY_QUANTITY}, #{PRODUCT_PRICE}, #{PRODUCT_DC}, #{PB_PRODUCT}, #{PRODUCT_CODE});
+        END;
+    </insert>
+
+    <select id="SelectAllDisplay" resultMap="DisplayDto">
+        select * from DISPLAY
+    </select>
+</mapper>

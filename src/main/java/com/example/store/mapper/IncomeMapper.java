@@ -9,4 +9,5 @@ import java.util.List;
 public interface IncomeMapper {
     public List<IncomeDto> SelectAllIncome();
     public void InsertIncome(IncomeDto incomeDto);
+    public void UpdateIncome(IncomeDto incomeDto);
 }

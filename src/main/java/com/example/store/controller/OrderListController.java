@@ -28,4 +28,10 @@ public class OrderListController {
         orderListService.InsertOrderList(orderListDto);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdateOrderList(@RequestBody OrderListDto orderListDto){
+        orderListService.UpdateOrderList(orderListDto);
+        return ResponseEntity.ok().build();
+    }
 }

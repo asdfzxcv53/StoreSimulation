@@ -4,12 +4,11 @@ import com.example.store.dto.EmployeeDto;
 import com.example.store.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -30,5 +29,21 @@ public class EmployeeController {
     @PostMapping("/regist")
     public void InsertEmployee(EmployeeDto employeeDto){
         employeeService.InsertEmployee(employeeDto);
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> UpdateEmployee(EmployeeDto employeeDto){
+        employeeService.UpdateEmployee(employeeDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/deregist")
+    public ResponseEntity<?> DeleteEmployeeByCode(@RequestParam Map<String, List<String>> employeeCodeMap){
+        for (Map.Entry<String, List<String>> entry : employeeCodeMap.entrySet()) {
+            for (String empCode : entry.getValue()) {
+                employeeService.DeleteEmployeeByCode(empCode);
+            }
+        }
+        return ResponseEntity.ok().build();
     }
 }

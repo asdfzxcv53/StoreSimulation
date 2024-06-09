@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.ATMMapper">
+    <resultMap id="ATMDto" type="com.example.store.dto.ATMDto">
+        <result property="atmUseDate" column="ATM_USE_DATE"/>
+        <result property="atmCode" column="ATM_CODE"/>
+        <result property="dnwTypeCode" column="DNW_TYPE_CODE"/>
+        <result property="atmAccountNo" column="ATM_ACCOUNT_NO"/>
+        <result property="dnwAmount" column="DNW_AMOUNT"/>
+        <result property="empCode" column="EMP_CODE"/>
+    </resultMap>
+
+    <insert id="InsertATM" parameterType="com.example.store.dto.ATMDto">
+        BEGIN
+            insert into ATM(ATM_USE_DATE, ATM_CODE, DNW_TYPE_CODE, ATM_ACCOUNT_NO, DNW_AMOUNT, EMP_CODE) values (#{ATM_USE_DATE}, #{ATM_CODE}, #{DNW_TYPE_CODE}, #{ATM_ACCOUNT_NO}, #{DNW_AMOUNT}, #{EMP_CODE});
+        END;
+    </insert>
+
+    <select id="SelectAllATM" resultMap="ATMDto">
+        select * from ATM
+    </select>
+</mapper>

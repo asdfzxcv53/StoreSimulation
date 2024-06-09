@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.StorageMapper">
+    <resultMap id="storageDTO" type="com.example.demo.store.StorageDto">
+        <result property="productName" column="PRODUCT_NAME"/>
+        <result property="storageQuantity" column="STORAGE_QUANTITY"/>
+        <result property="productPrice" column="PRODUCT_PRICE"/>
+        <result property="productDc" column="PRODUCT_DC"/>
+        <result property="pbProduct" column="PB_PRODUCT"/>
+        <result property="productCode" column="PRODUCT_CODE"/>
+    </resultMap>
+
+    <insert id="InsertStorage" parameterType="com.example.store.dto.StorageDto">
+        BEGIN
+            insert into STORAGE(PRODUCT_NAME, STORAGE_QUANTITY, PRODUCT_PRICE, PRODUCT_DC, PB_PRODUCT, PRODUCT_CODE) values (#{PRODUCT_NAME}, #{STORAGE_QUANTITY}, #{PRODUCT_PRICE}, #{PRODUCT_DC}, #{PB_PRODUCT}, #{PRODUCT_CODE});
+        END;
+    </insert>
+
+    <select id="SelectAllStorage" resultMap="StorageDto">
+        select * from STORAGE
+    </select>
+</mapper>

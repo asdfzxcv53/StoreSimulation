@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.store.mapper.OrderMapper">
+    <resultMap id="OrderDto" type="com.example.store.dto.OrderDto">
+        <result property="orderAmount" column="ORDER_AMOUNT"/>
+        <result property="orderCode" column="ORDER_CODE"/>
+        <result property="orderDate" column="ORDER_DATE"/>
+    </resultMap>
+
+    <insert id="InsertOrder" parameterType="com.example.store.dto.OrderDto">
+        BEGIN
+           insert into ORDER_(ORDER_AMOUNT, ORDER_CODE, ORDER_DATE) values (#{ORDER_AMOUNT}, #{ORDER_CODE}, #{ORDER_DATE});
+        END;
+    </insert>
+
+    <select id="SelectAllOrder" resultMap="OrderDto">
+        select * from ORDER_
+    </select>
+</mapper>
