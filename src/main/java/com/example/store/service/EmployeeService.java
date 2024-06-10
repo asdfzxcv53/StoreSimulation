@@ -25,11 +25,15 @@ public class EmployeeService {
         return employeeMapper.SelectAllEmployee();
     }
 
+    public EmployeeDto SelectEmployeeByCode(String empCode) {
+        return employeeMapper.SelectEmployeeByCode(empCode);
+    }
+
     public void InsertEmployee (EmployeeDto employeeDto) {
         employeeDto.setEmpCode(codeSequence.generateEmployeeCode());
         if(employeeDto.getPart().equals("D"))
-            employeeDto.setSalary(10000L);
-        else employeeDto.setSalary(12000L);
+            employeeDto.setSalary(1680000L);
+        else employeeDto.setSalary(2240000L);
         employeeMapper.InsertEmployee(employeeDto);
     }
 

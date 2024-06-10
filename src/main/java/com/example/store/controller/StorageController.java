@@ -1,5 +1,6 @@
 package com.example.store.controller;
 
+import com.example.store.dto.MoveDto;
 import com.example.store.dto.StorageDto;
 import com.example.store.service.DisplayService;
 import com.example.store.service.StorageService;
@@ -50,12 +51,9 @@ public class StorageController {
     }
 
     @PostMapping("/movedisplay")    // 창고에서 진열대로
-    public ResponseEntity<?> MoveDisplay(@RequestBody List<Map<String, Long>> moveData){
-        moveData.forEach(map -> {
-            map.forEach((key, value) -> {
-                storageService.MoveDisplay(key, value);
-            });
-        });
+    public ResponseEntity<?> MoveDisplay(@RequestBody List<MoveDto> moveDtoList){
+        System.out.println(moveDtoList.toString());
+        storageService.MoveDisplay(moveDtoList);
         return ResponseEntity.ok().build();
     }
 }

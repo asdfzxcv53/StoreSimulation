@@ -46,7 +46,7 @@ public class LotteryService {
         Random random = new Random();
         for (int i = 0; i < 6; i++) {
             // 랜덤한 두 자리 수 생성
-            int randomNumber = random.nextInt(90) + 10;
+            int randomNumber = random.nextInt(45);
             // 두 자리 숫자를 문자열로 변환하여 더하기
             sb.append(String.format("%02d", randomNumber));
         }

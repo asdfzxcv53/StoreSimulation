@@ -19,12 +19,14 @@ public class MaintainService {
     private final MaintainMapper maintainMapper;
     private final CodeSequence codeSequence;
     private final OutcomeService outcomeService;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public MaintainService(MaintainMapper maintainMapper, CodeSequence codeSequence, OutcomeService outcomeService) {
+    public MaintainService(MaintainMapper maintainMapper, CodeSequence codeSequence, OutcomeService outcomeService, EmployeeService employeeService) {
         this.maintainMapper = maintainMapper;
         this.codeSequence = codeSequence;
         this.outcomeService = outcomeService;
+        this.employeeService = employeeService;
     }
 
     public List<MaintainDto> SelectAllMaintain() {
@@ -45,6 +47,9 @@ public class MaintainService {
 
         String maintainCode = codeSequence.generateMaintainCode(typeCode);
 
+        if(typeCode.equals("인건비")) {
+            amount = employeeService.SelectEmployeeByCode(maintainData.getEmpCode()).getSalary();
+        }
 
         // 지출먼저 넣어주고
         OutcomeDto outcomeDto = new OutcomeDto();
@@ -58,6 +63,7 @@ public class MaintainService {
         MaintainDto maintainDto = new MaintainDto();
         maintainDto.setMaintainCode(maintainCode);
         maintainDto.setMaintainDate(formattedDate);
+
         maintainDto.setMaintainAmount(amount);
         System.out.println(maintainDto);
         maintainMapper.InsertMaintain(maintainDto);

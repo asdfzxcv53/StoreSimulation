@@ -29,4 +29,7 @@
     <select id="SelectPurListByKey" parameterType="Map" resultMap="PurListDto">
         select * from PUR_LIST where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purchaseCode} and PRODUCT_CODE = #{productCode}
     </select>
+    <update id="UpdatePurList" parameterType="com.example.store.dto.PurListDto">
+        update PUR_LIST set PURCHASE_PRODUCT_QUANTITY = #{purchaseProductQuantity}, PURCHASE_PRODUCT_PRICE = #{purchaseProductPrice}, ACC_MILEAGE = #{accMileage} where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purchaseCode} and PRODUCT_CODE = #{productCode}
+    </update>
 </mapper>

@@ -23,6 +23,9 @@
     <select id="SelectAllEmployee" resultMap="EmployeeDto">
         select * from EMPLOYEE
     </select>
+    <select id="SelectEmployeeByCode" parameterType="string" resultMap="EmployeeDto">
+        select * from EMPLOYEE where EMP_CODE = #{empCode}
+    </select>
     <delete id="DeleteEmployeeByCode" parameterType="String">
         delete from EMPLOYEE where EMP_CODE = #{empCode}
     </delete>

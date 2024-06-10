@@ -3,6 +3,7 @@ package com.example.store.service;
 import com.example.store.dto.OrderDto;
 import com.example.store.dto.OrderListDto;
 import com.example.store.dto.OutcomeDto;
+import com.example.store.dto.ProductDto;
 import com.example.store.mapper.OrderListMapper;
 import com.example.store.sequence.CodeSequence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,15 @@ public class OrderListService {
     private final CodeSequence codeSequence;
     private final OrderService orderService;
     private final OutcomeService outcomeService;
+    private final ProductService productService;
 
     @Autowired
-    public OrderListService(OrderListMapper orderListMapper, CodeSequence codeSequence, OrderService orderService, OutcomeService outcomeService) {
+    public OrderListService(OrderListMapper orderListMapper, CodeSequence codeSequence, OrderService orderService, OutcomeService outcomeService, ProductService productService) {
         this.orderListMapper = orderListMapper;
         this.codeSequence = codeSequence;
         this.orderService = orderService;
         this.outcomeService = outcomeService;
+        this.productService = productService;
     }
 
     public List<OrderListDto> SelectAllOrderList(){
@@ -30,10 +33,13 @@ public class OrderListService {
     public void InsertOrderList(OrderListDto orderListDto){
         Long orderAmount = 0L;
 
+        ProductDto productDto = productService.SelectProductByCode(orderListDto.getProductCode());
+
         OrderListDto orderListDto1 = orderListDto;
 
         orderListDto1.setOrderDate(codeSequence.getTime());
         orderListDto1.setOrderCode(codeSequence.getOrderCode());
+        orderListDto1.setOrderProductPrice(productDto.getProductPrice());
 
         orderAmount += orderListDto1.getOrderProductPrice() * orderListDto1.getOrderProductQuantity();
 

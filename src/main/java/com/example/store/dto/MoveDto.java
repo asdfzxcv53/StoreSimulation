@@ -7,8 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MaintainData {
-    String typeCode;
-    Long amount;
-    String empCode;
+public class MoveDto {
+    String productCode;
+    Long moveQuantity;
 }

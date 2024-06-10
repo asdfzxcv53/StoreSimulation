@@ -21,4 +21,10 @@
     <select id="SelectAllStorage" resultMap="StorageDto">
         select * from STORAGE
     </select>
+    <select id="SelectStorageByCode" resultMap="StorageDto">
+        select * from STORAGE where PRODUCT_CODE = #{productCode}
+    </select>
+    <update id="UpdateStorage" parameterType="com.example.store.dto.StorageDto">
+        update STORAGE set PRODUCT_NAME = #{productName}, STORAGE_QUANTITY = #{storageQuantity}, PRODUCT_PRICE = #{productPrice}, PRODUCT_DC = #{productDc}, PB_PRODUCT = #{pbProduct} where PRODUCT_CODE = #{productCode}
+    </update>
 </mapper>

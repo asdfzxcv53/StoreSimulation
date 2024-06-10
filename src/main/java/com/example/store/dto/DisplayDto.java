@@ -11,9 +11,9 @@ import lombok.ToString;
 public class DisplayDto {
     private String productCode;
     private String productName;
-    private Long displayQuantity;
+    private Long displayQuantity = 0L;
     private Long productPrice;
     private Long productDc = 0L;
     private String pbProduct = "N";
-    private String giftProduct;
+    private String giftProduct = "";
 }

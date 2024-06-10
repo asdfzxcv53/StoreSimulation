@@ -20,7 +20,7 @@
     </select>
 
     <select id="SelectOutcomeByDateCode" parameterType="com.example.store.dto.OutcomeDto" resultMap="OutcomeDto">
-        select * from OUTCOME where OUTCOME_DATE = #{outcomeDate} and OUTCOME_CODE = #{outcomeDto}
+        select * from OUTCOME where OUTCOME_DATE = #{outcomeDate} and OUTCOME_CODE = #{outcomeCode}
     </select>
 
     <update id="UpdateOutcome" parameterType="com.example.store.dto.OutcomeDto">

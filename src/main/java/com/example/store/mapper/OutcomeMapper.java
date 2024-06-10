@@ -10,6 +10,6 @@ import java.util.List;
 public interface OutcomeMapper {
     public List<OutcomeDto> SelectAllOutcome();
     public void InsertOutcome(OutcomeDto outcomeDto);
-    public OutcomeDto SelectOutcomeByDateCode(@Param("orderDate") String orderDate,@Param("orderCode") String orderCode);
+    public OutcomeDto SelectOutcomeByDateCode(@Param("outcomeDate") String outcomeDate,@Param("outcomeCode") String outcomeCode);
     public void UpdateOutcome(OutcomeDto outcomeDto);
 }

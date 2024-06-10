@@ -14,12 +14,10 @@ import java.util.List;
 public class ProductService {
 
     private final ProductMapper productMapper;
-    private final CodeSequence codeSequence;
 
     @Autowired
-    public ProductService(ProductMapper productMapper, CodeSequence codeSequence) {
+    public ProductService(ProductMapper productMapper) {
         this.productMapper = productMapper;
-        this.codeSequence = new CodeSequence();
     }
 
     @Transactional
@@ -39,7 +37,6 @@ public class ProductService {
 
     @Transactional
     public void InsertProduct(ProductDto productDto) {
-        productDto.setProductCode(codeSequence.generateProductCode());
         productMapper.InsertProduct(productDto);
     }
 

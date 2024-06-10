@@ -11,4 +11,5 @@ public interface EmployeeMapper {
     public void InsertEmployee(EmployeeDto employeeDto);
     public void UpdateEmployee(EmployeeDto employeeDto);
     public void DeleteEmployeeByCode(String empCode);
+    public EmployeeDto SelectEmployeeByCode(String empCode);
 }

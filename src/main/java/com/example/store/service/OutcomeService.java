@@ -25,8 +25,8 @@ public class OutcomeService {
         outcomeMapper.InsertOutcome(outcomeDto);
     }
 
-    public OutcomeDto SelectOutcomeByDateCode(String orderDate, String orderCode) {
-        return outcomeMapper.SelectOutcomeByDateCode(orderDate, orderCode);
+    public OutcomeDto SelectOutcomeByDateCode(String outcomeDate, String outcomeCode) {
+        return outcomeMapper.SelectOutcomeByDateCode(outcomeDate, outcomeCode);
     }
     public void UpdateOutcome(OutcomeDto outcomeDto){
         outcomeMapper.UpdateOutcome(outcomeDto);

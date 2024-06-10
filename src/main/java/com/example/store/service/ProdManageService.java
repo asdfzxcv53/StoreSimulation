@@ -39,7 +39,11 @@ public class ProdManageService {
         // 현재 날짜를 지정한 포맷으로 변환하여 문자열로 저장
         String formattedDate = currentDate.format(formatter);
 
+
         prodManageDto.setManageDate(formattedDate);
+
+        System.out.println(prodManageDto);
+
         prodManageMapper.InsertProdManage(prodManageDto);
 
         if(prodManageDto.getManageTypeCode().equals("D")){

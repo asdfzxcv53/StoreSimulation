@@ -1,6 +1,9 @@
 package com.example.store.controller;
 
 import com.example.store.dto.DisplayDto;
+import com.example.store.dto.ProductDto;
+import com.example.store.dto.SelectDto;
+import com.example.store.dto.SelectedDto;
 import com.example.store.service.DisplayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +47,11 @@ public class DisplayController {
             }
         }
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/select")
+    public List<SelectedDto> SelectDisplay(@RequestBody SelectDto selectDto) {
+        System.out.println(selectDto);
+        return displayService.SelectDisplay(selectDto);
     }
 }

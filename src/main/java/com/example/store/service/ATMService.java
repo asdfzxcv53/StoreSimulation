@@ -37,7 +37,6 @@ public class ATMService {
 
         atmDto.setAtmUseDate(formattedDate);
         atmDto.setAtmCode(codeSequence.generateAtmCode());
-        atmDto.setDnwTypeCode("D");
         atmMapper.InsertATM(atmDto);
     }
 }

@@ -22,4 +22,8 @@
     <select id="SelectOrderByDateCode" parameterType="com.example.store.dto.OrderDto" resultMap="OrderDto">
         select * from ORDER_ where ORDER_DATE = #{orderDate} and ORDER_CODE = #{orderCode}
     </select>
+
+    <update id="UpdateOrder" parameterType="com.example.store.dto.OrderDto">
+        update ORDER_ set ORDER_AMOUNT = #{orderAmount} where ORDER_DATE = #{orderDate} and ORDER_CODE = #{orderCode}
+    </update>
 </mapper>

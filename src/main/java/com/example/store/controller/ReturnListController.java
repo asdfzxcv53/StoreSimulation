@@ -23,8 +23,14 @@ public class ReturnListController {
     }
 
     @PostMapping("/regist")
-    public ResponseEntity<?> InsertReturnList(@RequestBody ReturnListDto returnListDto) {
-        returnListService.InsertReturnList(returnListDto);
+    public ResponseEntity<?> InsertReturnList(@RequestBody List<ReturnListDto> returnListDto) {
+
+        System.out.println(returnListDto.toString());
+        for (ReturnListDto returnListDto1 : returnListDto) {
+
+            returnListService.InsertReturnList(returnListDto1);
+        }
+
         return ResponseEntity.ok().build();
     }
 }

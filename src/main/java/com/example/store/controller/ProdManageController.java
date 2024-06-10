@@ -23,8 +23,9 @@ public class ProdManageController {
     }
 
     @PostMapping("/regist")
-    public ResponseEntity<?> InsertProdManage(@RequestBody ProdManageDto prodManageDto){
-        prodManageService.InsertProdManage(prodManageDto);
+    public ResponseEntity<?> InsertProdManage(@RequestBody List<ProdManageDto> prodManageDto){
+        System.out.println(prodManageDto);
+        prodManageService.InsertProdManage(prodManageDto.get(0));
         return ResponseEntity.ok().build();
     }
 }

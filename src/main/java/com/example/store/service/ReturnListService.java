@@ -36,15 +36,23 @@ public class ReturnListService {
         // 현재 날짜를 지정한 포맷으로 변환하여 문자열로 저장
         String formattedDate = currentDate.format(formatter);
 
-        PurListDto purListDto = purListService.SelectPurListByKey(returnListDto.getPurchaseDate(), returnListDto.getPurchaseCode(), returnListDto.getReturnDate());
+
+        // 반품목록에 날짜와 가격을 넣고 인서트
+        returnListDto.setReturnDate(formattedDate);
+
+
+        PurListDto purListDto = purListService.SelectPurListByKey(returnListDto.getPurchaseDate(), returnListDto.getPurchaseCode(), returnListDto.getProductCode());
+
+        System.out.println(purListDto);
 
         //반품하는것만큼 뺀다
         purListDto.setPurchaseProductQuantity(purListDto.getPurchaseProductQuantity() - returnListDto.getReturnQuantity());
         purListService.UpdatePurList(purListDto);
 
-        // 반품목록에 날짜와 가격을 넣고 인서트
-        returnListDto.setReturnDate(formattedDate);
+        System.out.println(returnListDto);
         returnListDto.setReturnPrice(purListDto.getPurchaseProductPrice());
+
+        System.out.println(returnListDto);
         returnListMapper.InsertReturnList(returnListDto);
 
 

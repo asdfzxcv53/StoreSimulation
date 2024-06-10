@@ -20,18 +20,24 @@ public class ReceiveService {
         this.storageService = storageService;
     }
 
-    public void ReceiveProduct(List<ReceiveDto> receiveDto){
-        for(ReceiveDto receiveDto1 : receiveDto){
-            ProductDto productDto = productService.SelectProductByCode(receiveDto1.getProductCode());
-            StorageDto storageDto = storageService.SelectStorageByCode(receiveDto1.getProductCode());
-            if(storageDto == null){
-                storageDto = new StorageDto();
-                storageDto.setProductCode(productDto.getProductCode());
-                storageDto.setProductName(productDto.getProductName());
-                storageDto.setProductPrice(productDto.getProductPrice());
-                storageDto.setPbProduct(productDto.getPbProduct());
-                storageDto.setStorageQuantity(receiveDto1.getProductQuantity());
-            }
+    public void ReceiveProduct(ReceiveDto receiveDto1){
+
+        ProductDto productDto = productService.SelectProductByCode(receiveDto1.getProductCode());
+        StorageDto storageDto = storageService.SelectStorageByCode(receiveDto1.getProductCode());
+        if(storageDto == null){
+            storageDto = new StorageDto();
+            storageDto.setProductCode(productDto.getProductCode());
+            storageDto.setProductName(productDto.getProductName());
+            storageDto.setProductPrice(productDto.getProductPrice());
+            storageDto.setPbProduct(productDto.getPbProduct());
+            storageDto.setStorageQuantity(receiveDto1.getReceiveQuantity());
+
+            storageService.InsertStorage(storageDto);
         }
+        else{
+            storageDto.setStorageQuantity(storageDto.getStorageQuantity() + receiveDto1.getReceiveQuantity());
+            storageService.UpdateStorage(storageDto);
+        }
+
     }
 }

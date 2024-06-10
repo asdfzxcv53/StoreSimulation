@@ -25,7 +25,7 @@ public class OrderController {
         return orderService.SelectAllOrder();
     }
 
-    @PostMapping("/regist")
+    @GetMapping("/regist")
     public ResponseEntity<?> InsertOrder(){
         orderService.InsertOrder();
         return ResponseEntity.ok().build();

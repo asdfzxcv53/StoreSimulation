@@ -44,6 +44,7 @@ public class OrderService {
         outcomeDto.setOutcomeCode(orderCode);
         outcomeDto.setOutcomeDate(formattedDate);
         outcomeDto.setOutcomeAmount(0L);
+        System.out.println(outcomeDto);
         outcomeService.InsertOutcome(outcomeDto);
 
         //주문목록 넣어주기
@@ -51,6 +52,7 @@ public class OrderService {
         orderDto.setOrderCode(orderCode);
         orderDto.setOrderDate(formattedDate);
         orderDto.setOrderAmount(0L);
+        System.out.println(orderDto);
         orderMapper.InsertOrder(orderDto);
 
     }

@@ -1,6 +1,7 @@
 package com.example.store.service;
 
 import com.example.store.dto.DisplayDto;
+import com.example.store.dto.MoveDto;
 import com.example.store.dto.StorageDto;
 import com.example.store.mapper.StorageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,32 +43,41 @@ public class StorageService {
     }
 
     @Transactional
-    public void MoveDisplay(String productCode, Long amount) {
+    public void MoveDisplay(List<MoveDto> moveDtoList) {
+        for (MoveDto moveDto : moveDtoList) {
+            String productCode = moveDto.getProductCode();
+            Long amount = moveDto.getMoveQuantity();
 
-        //수량만큼 빼줌
-        StorageDto storageDto = SelectStorageByCode(productCode);
-        if(storageDto.getStorageQuantity() - amount < 0)
-            return;
+            //수량만큼 빼줌
+            System.out.println(productCode);
+            System.out.println(amount);
 
-        storageDto.setStorageQuantity(storageDto.getStorageQuantity() - amount);
-        UpdateStorage(storageDto);
+            StorageDto storageDto = storageMapper.SelectStorageByCode(productCode);
+            System.out.println(storageDto);
+            if(storageDto.getStorageQuantity() - amount < 0)
+                return;
 
-        // 진열대에서 수량만큼 더해줌
-        DisplayDto displayDto = displayService.SelectDisplayByCode(productCode);
-        if(displayDto == null) {
-            displayDto.setProductCode(productCode);
-            displayDto.setProductName(storageDto.getProductName());
-            displayDto.setProductDc(storageDto.getProductDc());
-            displayDto.setProductPrice(storageDto.getProductPrice());
-            displayDto.setPbProduct(storageDto.getPbProduct());
-            displayDto.setDisplayQuantity(amount);
-            displayDto.setPbProduct("N");
-            displayService.InsertDisplay(displayDto);
-        }
-        else{
-            displayDto.setDisplayQuantity(displayDto.getDisplayQuantity() + amount);
-            displayService.UpdateDisplay(displayDto);
+            storageDto.setStorageQuantity(storageDto.getStorageQuantity() - amount);
+            UpdateStorage(storageDto);
+
+            System.out.println(storageDto);
+            // 진열대에서 수량만큼 더해줌
+            DisplayDto displayDto = displayService.SelectDisplayByCode(productCode);
+            if(displayDto == null) {
+                displayDto = new DisplayDto();
+                displayDto.setProductCode(productCode);
+                displayDto.setProductName(storageDto.getProductName());
+                displayDto.setProductDc(storageDto.getProductDc());
+                displayDto.setProductPrice(storageDto.getProductPrice());
+                displayDto.setPbProduct(storageDto.getPbProduct());
+                displayDto.setDisplayQuantity(amount);
+                displayDto.setPbProduct(storageDto.getPbProduct());
+                displayService.InsertDisplay(displayDto);
+            }
+            else{
+                displayDto.setDisplayQuantity(displayDto.getDisplayQuantity() + amount);
+                displayService.UpdateDisplay(displayDto);
+            }
         }
     }
-
 }
