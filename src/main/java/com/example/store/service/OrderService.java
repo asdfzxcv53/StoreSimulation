@@ -14,21 +14,19 @@ public class OrderService {
     private final OrderMapper orderMapper;
     private final CodeSequence codeSequence;
     private final OutcomeService outcomeService;
-    private final OrderListService orderListService;
 
     @Autowired
-    public OrderService(OrderMapper orderMapper, CodeSequence codeSequence, OutcomeService outcomeService, OrderListService orderListService) {
+    public OrderService(OrderMapper orderMapper, CodeSequence codeSequence, OutcomeService outcomeService) {
         this.orderMapper = orderMapper;
         this.codeSequence = codeSequence;
         this.outcomeService = outcomeService;
-        this.orderListService = orderListService;
     }
 
     public List<OrderDto> SelectAllOrder(){
         return orderMapper.SelectAllOrder();
     }
 
-    public void InsertOrder(OrderOrderListDto orderOrderListDto){
+    public void InsertOrder(){
         LocalDate currentDate = LocalDate.now();
 
         // 날짜 포맷 지정
@@ -39,10 +37,7 @@ public class OrderService {
 
         String orderCode = codeSequence.generateOrderCode();
 
-        OrderDto orderDto = orderOrderListDto.getOrderDto();
-        List<OrderListDto> orderListDto = orderOrderListDto.getOrderListDto();
-
-        Long allOrderAmount = 0L;
+        codeSequence.setTime(formattedDate);
 
         //지출먼저 넣어주고
         OutcomeDto outcomeDto = new OutcomeDto();
@@ -52,28 +47,19 @@ public class OrderService {
         outcomeService.InsertOutcome(outcomeDto);
 
         //주문목록 넣어주기
+        OrderDto orderDto = new OrderDto();
         orderDto.setOrderCode(orderCode);
         orderDto.setOrderDate(formattedDate);
         orderDto.setOrderAmount(0L);
         orderMapper.InsertOrder(orderDto);
 
-        //주문목록은 어케할지
-        for (OrderListDto orderListDto1 : orderListDto) {
-            orderListDto1.setOrderCode(orderCode);
-            orderListDto1.setOrderDate(formattedDate);
-            orderListService.InsertOrderList(orderListDto1);
-
-            allOrderAmount += orderListDto1.getOrderProductPrice() * orderListDto1.getOrderProductQuantity();
-        }
-
-        outcomeDto.setOutcomeAmount(allOrderAmount);
-        //outcomeService.UpdateOutcome(outcomeDto);
-
-        orderDto.setOrderAmount(allOrderAmount);
-        orderMapper.UpdateOrder(orderDto);
     }
 
     public void UpdateOrder(OrderDto orderDto){
         orderMapper.UpdateOrder(orderDto);
+    }
+
+    public OrderDto SelectOrderByDateCode(String orderDate, String orderCode){
+        return orderMapper.SelectOrderByDateCode(orderDate, orderCode);
     }
 }

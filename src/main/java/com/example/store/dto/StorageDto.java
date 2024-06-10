@@ -11,6 +11,6 @@ public class StorageDto {
     private String productName;
     private Long storageQuantity;
     private Long productPrice;
-    private Long productDc;
-    private String pbProduct;
+    private Long productDc = 0L;
+    private String pbProduct = "N";
 }

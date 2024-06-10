@@ -22,4 +22,8 @@
     <select id="SelectIncomeByDateCode" parameterType="com.example.store.dto.IncomeDto" resultMap="IncomeDto">
         select * from income where INCOME_DATE = #{incomeDate} and INCOME_CODE = #{incomeCode}
     </select>
+
+    <update id="UpdateIncome" parameterType="com.example.store.dto.IncomeDto">
+        update INCOME set INCOME_AMOUNT = #{incomeAmount} where  INCOME_DATE = #{incomeDate} and INCOME_CODE = #{incomeCode}
+    </update>
 </mapper>

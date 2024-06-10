@@ -13,5 +13,5 @@ public class PurListDto {
     private String productCode;
     private Long purchaseProductQuantity;
     private Long purchaseProductPrice;
-    private Long accMileage;
+    private Long accMileage = 0L;
 }

@@ -22,7 +22,11 @@
         select * from PUR_LIST
     </select>
 
-    <select id="SelectPurListByDateCode" parameterType="com.example.store.dto.PurListDto" resultMap="PurListDto">
+    <select id="SelectPurListByDateCode" parameterType="Map" resultMap="PurListDto">
         select * from PUR_LIST where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purhcaseCode}
+    </select>
+
+    <select id="SelectPurListByKey" parameterType="Map" resultMap="PurListDto">
+        select * from PUR_LIST where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purchaseCode} and PRODUCT_CODE = #{productCode}
     </select>
 </mapper>

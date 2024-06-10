@@ -3,6 +3,7 @@ package com.example.store.service;
 import com.example.store.dto.*;
 import com.example.store.mapper.PurListMapper;
 import com.example.store.sequence.CodeSequence;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class PurListService {
 
     @Transactional
     public void InsertPurList(List<PurListDto> purListDtoList){
-        PurchaseDto purchaseDto = purchaseService.SelectPurchaseByDateCode(purchaseService.getTime(), codeSequence.getPurchaseCode());
+        PurchaseDto purchaseDto = purchaseService.SelectPurchaseByDateCode(codeSequence.getTime(), codeSequence.getPurchaseCode());
 
         allMileageAmount = 0L;
         allPurchaseAmount = 0L;
@@ -45,12 +46,13 @@ public class PurListService {
             ProductDto productDto = productService.SelectProductByCode(purListDto.getProductCode());
 
             // 기본키 지정
+            //purListDto.setPurchaseCode(codeSequence.getPurchaseCode());
             purListDto.setPurchaseCode(codeSequence.getPurchaseCode());
-            purListDto.setPurchaseCode(purchaseService.getTime());
+            purListDto.setPurchaseDate(codeSequence.getTime());
 
             // 진열상품 개수 업데이트
             DisplayDto newDisplayDto = displayService.SelectDisplayByCode(purListDto.getProductCode());
-            if (newDisplayDto.getDisplayQuantity() - purListDto.getPurchaseProductQuantity() < 0)
+            if ((newDisplayDto.getDisplayQuantity() - purListDto.getPurchaseProductQuantity()) < 0)
                 throw new RuntimeException(" ? ");
             newDisplayDto.setDisplayQuantity(newDisplayDto.getDisplayQuantity() - purListDto.getPurchaseProductQuantity());
             if(purchaseDto.getEmpCode() != null){
@@ -59,34 +61,47 @@ public class PurListService {
                     long productMileage = Math.round(productMileageTemp);
                     purListDto.setAccMileage(productMileage);
                     allMileageAmount += productMileage;
-                    allPurchaseAmount += productDto.getProductPrice() * purListDto.getPurchaseProductQuantity() - productMileage;
-                    // 이경우에는 마일리지를 빼고 더해야하니까 여기서 더해주고
+                }
+                else{
+                    purListDto.setAccMileage(0L);
                 }
             }
             // 이경우에는 마일리지가 없으니 다 더해주고
-            else
-                allPurchaseAmount += productDto.getProductPrice() * purListDto.getPurchaseProductQuantity();
+            System.out.println(productDto.getProductPrice());
+            System.out.println(purListDto.getPurchaseProductQuantity());
+            allPurchaseAmount += productDto.getProductPrice() * purListDto.getPurchaseProductQuantity();
 
+            //System.out.println(newDisplayDto);
+
+            System.out.println(newDisplayDto);
             displayService.UpdateDisplay(newDisplayDto);
+            System.out.println(purListDto);
             purListMapper.InsertPurList(purListDto);
 
             // 하나라도 마일리지가있으면 총 구매에 총 마일리지 추가해서 업데이트
-            if(purchaseDto.getEmpCode() != null && allMileageAmount > 0){
+            System.out.println(allMileageAmount);
+            if(purchaseDto.getMembershipCode() != null && allMileageAmount > 0){
                 purchaseDto.setPurchaseMileage(allMileageAmount);
             }
-
-            //수입부분도 업데이트
-            IncomeDto incomeDto = incomeService.SelectIncomeByDateCode(purListDto.getPurchaseDate(), purListDto.getPurchaseCode());
-            incomeDto.setIncomeAmount(allPurchaseAmount);
-            incomeService.UpdateIncome(incomeDto);
-
-            // 구매의 총합도 업데이트
-            purchaseDto.setPurchaseAmount(allPurchaseAmount);
-            purchaseService.UpdatePurchase(purchaseDto);
         }
+
+        //수입부분도 업데이트
+        IncomeDto incomeDto = incomeService.SelectIncomeByDateCode(purchaseDto.getPurchaseDate(), purchaseDto.getPurchaseCode());
+        incomeDto.setIncomeAmount(allPurchaseAmount);
+        System.out.println(incomeDto);
+        incomeService.UpdateIncome(incomeDto);
+
+        // 구매의 총합도 업데이트
+        purchaseDto.setPurchaseAmount(allPurchaseAmount);
+        System.out.println(purchaseDto);
+        purchaseService.UpdatePurchase(purchaseDto);
     }
     @Transactional
     public void UpdatePurList(PurListDto purListDto){
         purListMapper.UpdatePurList(purListDto);
+    }
+
+    public PurListDto SelectPurListByKey(String purchaseDate, String purchaseCode, String productCode){
+        return purListMapper.SelectPurListByKey(purchaseDate, purchaseCode,productCode);
     }
 }

@@ -21,6 +21,12 @@
     </select>
 
     <select id="SelectProductByCode" parameterType="String" resultMap="ProductDto">
-        select * from PRODUCT where PRODUCT_CODE = #{CODE}
+        select * from PRODUCT where PRODUCT_CODE = #{productCode}
     </select>
+
+    <update id="UpdateProduct" parameterType="com.example.store.dto.ProductDto">
+        BEGIN
+            update PRODUCT set PRODUCT_NAME = #{productName}, PRODUCT_PRICE = #{productPrice}, PB_PRODUCT = #{pbProduct} where PRODUCT_CODE = #{productCode};
+        END;
+    </update>
 </mapper>

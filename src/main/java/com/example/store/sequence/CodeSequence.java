@@ -1,5 +1,7 @@
 package com.example.store.sequence;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,10 +19,18 @@ public class CodeSequence {
     private static int productCode = 0;
     private static final int MAX_CODE_VALUE = 999999;
 
+    @Getter
+    @Setter
+    private String time;
+
     //아래 3개가 지출에 대한 코드
 
     public String getPurchaseCode(){
-        return String.format("%02d%06d", 12, purchaseCode);
+        return String.format("%02d%04d", 12, purchaseCode);
+    }
+
+    public String getOrderCode(){
+        return String.format("%02d%04d", 02, orderCode);
     }
 
     public synchronized String generateProductCode() {
@@ -30,6 +40,7 @@ public class CodeSequence {
         productCode++;
         return String.format("%04d", productCode);
     }
+
 
     public synchronized String generateEmployeeCode() {
         if (employeeCode >= MAX_CODE_VALUE) {

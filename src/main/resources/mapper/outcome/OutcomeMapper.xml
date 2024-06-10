@@ -18,4 +18,12 @@
     <select id="SelectAllOutcome" resultMap="OutcomeDto">
         select * from outcome
     </select>
+
+    <select id="SelectOutcomeByDateCode" parameterType="com.example.store.dto.OutcomeDto" resultMap="OutcomeDto">
+        select * from OUTCOME where OUTCOME_DATE = #{outcomeDate} and OUTCOME_CODE = #{outcomeDto}
+    </select>
+
+    <update id="UpdateOutcome" parameterType="com.example.store.dto.OutcomeDto">
+        update OUTCOME set OUTCOME_AMOUNT = #{outcomeAmount} where OUTCOME_DATE = #{outcomeDate} and OUTCOME_CODE = #{outcomeCode}
+    </update>
 </mapper>

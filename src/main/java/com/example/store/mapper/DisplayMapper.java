@@ -12,5 +12,4 @@ public interface DisplayMapper {
     public void InsertDisplay(DisplayDto displayDto);
     public void UpdateDisplay(DisplayDto displayDto);
     public void DeleteDisplayByCode(String displayCode);
-
 }

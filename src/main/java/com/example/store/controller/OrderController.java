@@ -1,6 +1,7 @@
 package com.example.store.controller;
 
 import com.example.store.dto.OrderDto;
+import com.example.store.dto.OrderListDto;
 import com.example.store.dto.OrderOrderListDto;
 import com.example.store.dto.ReceiveDto;
 import com.example.store.service.OrderService;
@@ -25,8 +26,8 @@ public class OrderController {
     }
 
     @PostMapping("/regist")
-    public ResponseEntity<?> InsertOrder(@RequestBody OrderOrderListDto orderOrderListDto){
-        orderService.InsertOrder(orderOrderListDto);
+    public ResponseEntity<?> InsertOrder(){
+        orderService.InsertOrder();
         return ResponseEntity.ok().build();
     }
 

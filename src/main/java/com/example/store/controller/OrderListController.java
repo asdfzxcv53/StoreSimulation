@@ -25,6 +25,7 @@ public class OrderListController {
 
     @PostMapping("/regist")
     public ResponseEntity<?> InsertOrderList(@RequestBody OrderListDto orderListDto){
+        System.out.println(orderListDto);
         orderListService.InsertOrderList(orderListDto);
         return ResponseEntity.ok().build();
     }

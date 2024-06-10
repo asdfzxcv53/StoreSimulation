@@ -59,7 +59,6 @@ public class MaintainService {
         maintainDto.setMaintainCode(maintainCode);
         maintainDto.setMaintainDate(formattedDate);
         maintainDto.setMaintainAmount(amount);
-        maintainDto.setEmpCode("000003");
         System.out.println(maintainDto);
         maintainMapper.InsertMaintain(maintainDto);
     }

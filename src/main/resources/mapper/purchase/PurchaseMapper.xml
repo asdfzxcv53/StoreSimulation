@@ -30,7 +30,13 @@
         select * from purchase
     </select>
 
-    <select id="SelectPurchaseByDateCode" parameterType="com.example.store.dto.PurchaseDto" resultMap="PurchaseDto">
+    <select id="SelectPurchaseByDateCode" parameterType="Map" resultMap="PurchaseDto">
         select * from PURCHASE where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purchaseCode}
     </select>
+
+    <update id="UpdatePurchase" parameterType="com.example.store.dto.PurchaseDto">
+        BEGIN
+            update PURCHASE set PURCHASE_MILEAGE = #{purchaseMileage}, CARD_ACCOUNT_NO = #{cardAccountNo}, CARD_PURCHASE_AMOUNT = #{cardPurchaseAmount}, VOUCHER_NO = #{voucherNo}, VOUCHER_PURCHASE_AMOUNT = #{voucherPurchaseAmount}, COUPON_NO = #{couponNo}, COUPON_PURCHASE_AMOUNT = #{couponPurchaseAmount}, CASH_PURCHASE_AMOUNT = #{cashPurchaseAmount}, USE_MILEAGE = #{useMileage}, EMP_CODE = #{empCode}, MEMBERSHIP_CODE = #{membershipCode}, PURCHASE_AMOUNT = #{purchaseAmount} where PURCHASE_DATE = #{purchaseDate} and PURCHASE_CODE = #{purchaseCode};
+        END;
+    </update>
 </mapper>

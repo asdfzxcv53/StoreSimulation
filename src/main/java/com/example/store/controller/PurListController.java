@@ -23,6 +23,7 @@ public class PurListController {
 
     @PostMapping("/regist")
     public ResponseEntity<?> InsertPurList(@RequestBody List<PurListDto> purListDto){
+        System.out.println(purListDto.toString());
         purListService.InsertPurList(purListDto);
         return ResponseEntity.ok().build();
     }

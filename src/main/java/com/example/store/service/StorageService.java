@@ -54,8 +54,20 @@ public class StorageService {
 
         // 진열대에서 수량만큼 더해줌
         DisplayDto displayDto = displayService.SelectDisplayByCode(productCode);
-        displayDto.setDisplayQuantity(displayDto.getDisplayQuantity() + amount);
-        displayService.UpdateDisplay(displayDto);
+        if(displayDto == null) {
+            displayDto.setProductCode(productCode);
+            displayDto.setProductName(storageDto.getProductName());
+            displayDto.setProductDc(storageDto.getProductDc());
+            displayDto.setProductPrice(storageDto.getProductPrice());
+            displayDto.setPbProduct(storageDto.getPbProduct());
+            displayDto.setDisplayQuantity(amount);
+            displayDto.setPbProduct("N");
+            displayService.InsertDisplay(displayDto);
+        }
+        else{
+            displayDto.setDisplayQuantity(displayDto.getDisplayQuantity() + amount);
+            displayService.UpdateDisplay(displayDto);
+        }
     }
 
 }

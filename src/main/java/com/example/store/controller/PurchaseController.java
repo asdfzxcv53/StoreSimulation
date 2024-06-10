@@ -26,10 +26,13 @@ public class PurchaseController {
     }
 
     @PostMapping("/regist")
-    public ResponseEntity<?> InsertPurchase(@RequestBody PurchaseDto purchaseDto){
+    public ResponseEntity<?> InsertPurchase(@RequestBody List<PurchaseDto> purchaseDto){
         System.out.println("??????????");
 
-        purchaseService.InsertPurchase(purchaseDto);
+        PurchaseDto newPurchaseDto = purchaseDto.get(0);
+
+        System.out.println(newPurchaseDto);
+        purchaseService.InsertPurchase(newPurchaseDto);
         return ResponseEntity.ok().build();
     }
 

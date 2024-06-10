@@ -13,13 +13,19 @@
         <result property="membershipMileage" column="MEMBERSHIP_MILEAGE"/>
     </resultMap>
 
-    <insert id="InsertMileage" parameterType="com.example.store.dto.MembershipDto">
+    <insert id="InsertMembership" parameterType="com.example.store.dto.MembershipDto">
         BEGIN
            insert into MEMBERSHIP(MEMBERSHIP_CODE, MEMBERSHIP_NAME, MEMBERSHIP_AGE, MEMBERSHIP_GENDER, MEMBERSHIP_MAIL_NO, MEMBERSHIP_PHONE_NO, MEMBERSHIP_MILEAGE) values (#{membershipCode}, #{membershipName}, #{membershipAge}, #{membershipGender}, #{membershipMailNo}, #{membershipPhoneNo}, #{membershipMileage});
         END;
     </insert>
 
-    <select id="SelectAllMileage" resultMap="MembershipDto">
+    <select id="SelectAllMembership" resultMap="MembershipDto">
         select * from MEMBERSHIP
     </select>
+
+    <update id="UpdateMembership" parameterType="com.example.store.dto.MembershipDto">
+        BEGIN
+            update MEMBERSHIP set MEMBERSHIP_NAME = #{membershipName}, MEMBERSHIP_AGE = #{membershipAge}, MEMBERSHIP_GENDER = #{membershipGender}, MEMBERSHIP_MAIL_NO = #{membershipMailNo}, MEMBERSHIP_PHONE_NO = #{membershipPhoneNo}, MEMBERSHIP_MILEAGE = #{membershipMileage} where MEMBERSHIP_CODE = #{membershipCode};
+        end;
+    </update>
 </mapper>

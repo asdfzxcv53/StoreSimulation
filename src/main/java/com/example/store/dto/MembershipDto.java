@@ -14,5 +14,5 @@ public class MembershipDto {
     private String membershipGender;
     private String membershipMailNo;
     private String membershipPhoneNo;
-    private String membershipMileage;
+    private Long membershipMileage = 0L;
 }

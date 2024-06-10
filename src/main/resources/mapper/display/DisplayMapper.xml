@@ -22,4 +22,12 @@
     <select id="SelectAllDisplay" resultMap="DisplayDto">
         select * from DISPLAY
     </select>
+    <select id="SelectDisplayByCode" parameterType="String" resultMap="DisplayDto">
+        select * from DISPLAY where PRODUCT_CODE = #{displayCode}
+    </select>
+    <update id="UpdateDisplay" parameterType="com.example.store.dto.DisplayDto">
+        BEGIN
+            update DISPLAY set PRODUCT_NAME = #{productName}, DISPLAY_QUANTITY = #{displayQuantity}, PRODUCT_PRICE = #{productPrice}, PRODUCT_DC = #{productDc}, PB_PRODUCT = #{pbProduct} where PRODUCT_CODE = #{productCode};
+        END;
+    </update>
 </mapper>

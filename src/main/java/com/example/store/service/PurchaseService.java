@@ -20,9 +20,6 @@ public class PurchaseService {
     private final CodeSequence codeSequence;
     private final IncomeService incomeService;
 
-    @Getter
-    @Setter
-    private String time;
 
     @Autowired
     public PurchaseService(PurchaseMapper purchaseMapper, CodeSequence codeSequence, IncomeService incomeService) {
@@ -35,15 +32,16 @@ public class PurchaseService {
         return purchaseMapper.SelectAllPurchase();
     }
 
-    public PurchaseDto SelectPurchaseByDateCode(String purchaseDate, String PurchaseCode){
-        return purchaseMapper.SelectPurchaseByDateCode(purchaseDate, PurchaseCode);
+    public PurchaseDto SelectPurchaseByDateCode(String purchaseDate, String purchaseCode){
+        System.out.println(purchaseDate + purchaseCode);
+        return purchaseMapper.SelectPurchaseByDateCode(purchaseDate, purchaseCode);
     };
 
     @Transactional
     public void InsertPurchase(PurchaseDto purchaseDto){
         LocalDate currentDate = LocalDate.now();
 
-        System.out.println(purchaseDto);
+        //System.out.println(purchaseDto);
         // 날짜 포맷 지정
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 
@@ -52,22 +50,23 @@ public class PurchaseService {
 
         String purchaseCode = codeSequence.generatePurchaseCode();
 
-        this.setTime(formattedDate);
+        System.out.println(purchaseCode);
 
-        Long allMileageAmount = 0L;
-        Long allPurchaseAmount = 0L;
+        codeSequence.setTime(formattedDate);
 
         //수입 넣어주고
         IncomeDto incomeDto = new IncomeDto();
         incomeDto.setIncomeCode(purchaseCode);
         incomeDto.setIncomeDate(formattedDate);
         incomeDto.setIncomeAmount(0L);
+        System.out.println(incomeDto);
         incomeService.InsertIncome(incomeDto);
 
         //구매 넣어주고
         purchaseDto.setPurchaseCode(purchaseCode);
         purchaseDto.setPurchaseDate(formattedDate);
-        purchaseDto.setPurchaseAmount(0L);
+        purchaseDto.setPurchaseMileage(0L);
+        System.out.println(purchaseDto);
         purchaseMapper.InsertPurchase(purchaseDto);
     }
 

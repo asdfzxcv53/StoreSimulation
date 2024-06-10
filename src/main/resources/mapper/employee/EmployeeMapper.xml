@@ -26,4 +26,9 @@
     <delete id="DeleteEmployeeByCode" parameterType="String">
         delete from EMPLOYEE where EMP_CODE = #{empCode}
     </delete>
+    <update id="UpdateEmployee" parameterType="com.example.store.dto.EmployeeDto">
+        BEGIN
+            update EMPLOYEE set EMP_NAME = #{empName}, EMP_AGE = #{empAge}, EMP_GENDER = #{empGender}, EMP_PHONE_NO = #{empPhoneNo}, EMP_MAIL_NO = #{empMailNo}, EMP_ACCOUNT_NO = #{empAccountNo}, PART = #{part}, SALARY = #{salary} where EMP_CODE = #{empCode};
+        END;
+    </update>
 </mapper>

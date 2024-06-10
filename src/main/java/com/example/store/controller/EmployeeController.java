@@ -35,6 +35,7 @@ public class EmployeeController {
 
     @PostMapping("/update")
     public ResponseEntity<?> UpdateEmployee(@RequestBody EmployeeDto employeeDto){
+        System.out.println(employeeDto);
         employeeService.UpdateEmployee(employeeDto);
         return ResponseEntity.ok().build();
     }

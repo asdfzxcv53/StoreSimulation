@@ -18,4 +18,8 @@
     <select id="SelectAllOrder" resultMap="OrderDto">
         select * from ORDER_
     </select>
+
+    <select id="SelectOrderByDateCode" parameterType="com.example.store.dto.OrderDto" resultMap="OrderDto">
+        select * from ORDER_ where ORDER_DATE = #{orderDate} and ORDER_CODE = #{orderCode}
+    </select>
 </mapper>
